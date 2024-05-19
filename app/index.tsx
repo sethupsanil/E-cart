@@ -8,7 +8,7 @@ const index = () => {
 
   return (
     <View>
-      <Text>index</Text>
+      <Text className="text-2xl">index</Text>
     </View>
   );
 };
