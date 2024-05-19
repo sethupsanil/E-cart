@@ -7,8 +7,10 @@ const index = () => {
   const { expoPushToken, notification } = usePushNotification();
 
   return (
-    <View>
-      <Text className="text-2xl">index</Text>
+    <View className="flex-1 items-center justify-center bg-white">
+      <Text className="text-2xl">
+        Open up App.js to start working on your app!
+      </Text>
     </View>
   );
 };
