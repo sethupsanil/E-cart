@@ -6,7 +6,7 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 
 import { NotificationType } from "@/types/usePushNotification.type";
-import { errorHandler } from "@/utils/helper.util";
+import { errorHandler } from "@UTILS/helper.util";
 
 export const usePushNotification = () => {
   Notifications.setNotificationHandler({

@@ -1,4 +1,4 @@
-import { config } from "@/config/appWrite.config";
+import { config } from "@CONFIG/appWrite.config";
 
 import {
   Account,

@@ -1,9 +1,9 @@
-import { usePushNotification } from "@/hooks/usePushNotification.hook";
-import { Link } from "expo-router";
+import { usePushNotification } from "@HOOKS/usePushNotification.hook";
 import React from "react";
 import { Appearance, Switch } from "react-native";
 
-import { Text, View } from "@/components/Themed";
+import { MonoText } from "@COMPONENTS/StyledText";
+import { Link, Text, View } from "@COMPONENTS/Themed";
 
 const index = () => {
   const { expoPushToken, notification } = usePushNotification();
@@ -27,6 +27,7 @@ const index = () => {
       <View className="h-20 w-20 border-2 "></View>
       <Link href={"/modal"}>Open modal</Link>
       <Link href={"/test"}>goto test</Link>
+      <MonoText>Hai mono</MonoText>
     </View>
   );
 };

@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/native";
 import { useEffect } from "react";
 
-import { useColorScheme } from "@/components/useColorScheme";
+import { useColorScheme } from "@HOOKS/useColorScheme.hook";
 
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
