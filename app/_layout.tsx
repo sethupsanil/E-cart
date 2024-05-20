@@ -2,8 +2,11 @@ import { useEffect } from "react";
 
 import { useColorScheme } from "@HOOKS/useColorScheme.hook";
 
+import Dark from "@CONFIG/DarkTheme.config";
+import Light from "@CONFIG/LightTheme.config";
+import { useTheme } from "@HOOKS/useTheme.hook";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { useTheme } from "@react-navigation/native";
+import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -60,24 +63,24 @@ function RootLayoutNav() {
   const theme = useTheme();
 
   const colorScheme = useColorScheme();
-
+  const { colors } = useTheme();
   return (
-    <SafeAreaView className="h-full w-full flex-1">
-      {/* <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}> */}
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="modal"
-          options={{
-            presentation: "modal",
-            autoHideHomeIndicator: true,
-            headerShown: false,
+    <ThemeProvider value={colorScheme === "dark" ? Dark : Light}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="modal"
+            options={{
+              presentation: "modal",
+              autoHideHomeIndicator: true,
+              headerShown: false,
 
-            freezeOnBlur: true,
-          }}
-        />
-      </Stack>
-      {/* </ThemeProvider> */}
-    </SafeAreaView>
+              freezeOnBlur: true,
+            }}
+          />
+        </Stack>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 }
