@@ -24,9 +24,11 @@ export default function ModalScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // maxHeight: 200,
     alignItems: "center",
     justifyContent: "center",
     height: 400,
+    backgroundColor: "rgba(0, 0, 0, .1)",
   },
   title: {
     fontSize: 20,

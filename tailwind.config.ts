@@ -24,7 +24,8 @@ module.exports = {
           200: "#f00",
         },
         white: {
-          100: "#fff",
+          DEFAULT: "#fff",
+          // 100: "#fff",
           200: "#e6e6e6",
           300: "#cccccc",
           400: "#b3b3b3",
@@ -34,6 +35,7 @@ module.exports = {
           800: "#4c4c4c",
         },
         green: {
+          DEFAULT: "#0d831f",
           100: "#0d831f",
           200: "rgb(49, 134, 22)",
         },

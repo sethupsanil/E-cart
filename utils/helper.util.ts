@@ -1,6 +1,6 @@
 const errorHandler = (error: any, isFatal: boolean = false): void => {
   if (isFatal) console.error("Fatal Error:", error);
-  else console.error("Error:", error);
+  else console.log("Error:", error);
 };
 
 const generateRandomNumber = (): Number => {

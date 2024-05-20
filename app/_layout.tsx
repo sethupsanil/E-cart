@@ -1,8 +1,4 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
+import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useEffect } from "react";
 
 import { useColorScheme } from "@/components/useColorScheme";
@@ -63,7 +59,7 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === "dark" ? DefaultTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: true }} />
         <Stack.Screen
@@ -71,6 +67,8 @@ function RootLayoutNav() {
           options={{
             presentation: "modal",
             autoHideHomeIndicator: true,
+            headerShown: false,
+
             freezeOnBlur: true,
           }}
         />

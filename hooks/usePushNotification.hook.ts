@@ -6,6 +6,7 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 
 import { NotificationType } from "@/types/usePushNotification.type";
+import { errorHandler } from "@/utils/helper.util";
 
 export const usePushNotification = () => {
   Notifications.setNotificationHandler({
@@ -72,7 +73,7 @@ export const usePushNotification = () => {
         handleRegistrationError(`${e}`);
       }
     } else {
-      console.error("Must use physical device for push notifications");
+      errorHandler("Must use physical device for push notifications");
     }
   }
 
