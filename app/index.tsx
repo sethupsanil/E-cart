@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Appearance, ScrollView, Switch, Text, View } from "react-native";
+import { Appearance, ScrollView, Switch } from "react-native";
 
-// import { Text, View } from "@COMPONENTS/Themed";
+import { Text, View } from "@COMPONENTS/Themed";
 
 const index = () => {
   const [theme, setTheme] = useState(Appearance.getColorScheme());
@@ -18,7 +18,7 @@ const index = () => {
     <ScrollView>
       <View className="flex-1 items-center justify-center ">
         <Switch value={theme === "light"} onValueChange={toggleColorScheme} />
-        <Text className="text-white">White</Text>
+        <Text>White / Dark</Text>
         <View className="h-20 w-20 border-1 border-white-secondary bg-white"></View>
         <Text className="text-white-primary">White-primary</Text>
         <View className="h-20 w-20 border-1 border-white-secondary bg-white-primary"></View>
