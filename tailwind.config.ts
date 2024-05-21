@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require("./constants/Colors");
 module.exports = {
   content: [
     "./app/**/*.{ts,tsx,ts,tsx}",
@@ -9,16 +10,16 @@ module.exports = {
     extend: {
       colors: {
         black: {
-          DEFAULT: "#000",
+          DEFAULT: colors.black,
         },
         white: {
-          DEFAULT: "#fff",
-          primary: "#f8f8f8",
-          secondary: "#e8e8e8",
+          DEFAULT: colors.white,
+          primary: colors.whitePrimary,
+          secondary: colors.whiteSecondary,
         },
         green: {
-          DEFAULT: "#0d831f",
-          primary: "#0C831F",
+          DEFAULT: colors.green,
+          primary: colors.greenPrimary,
         },
       },
       fontFamily: {
