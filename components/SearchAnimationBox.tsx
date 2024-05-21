@@ -1,3 +1,4 @@
+import Colors from "@CONSTANTS/Colors";
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, StyleSheet, View } from "react-native";
 
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     height: 35,
     overflow: "hidden",
 
-    backgroundColor: "#f0f0f0",
+    backgroundColor: Colors.whitePrimary,
   },
   text: {
     position: "absolute",
