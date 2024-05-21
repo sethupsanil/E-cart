@@ -1,0 +1,17 @@
+export const AnimationText = [
+  "Rice",
+  "Chocolate",
+  "Drinks",
+  "Fruits",
+  "Vegetables",
+  "Meat",
+  "Fish",
+  "Spices",
+  "Bakery",
+  "Dairy",
+  "Frozen",
+  "Canned",
+  "Snacks",
+  "Sweets",
+  "Others",
+];

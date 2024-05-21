@@ -1,25 +1,8 @@
+import { Icon, Text, View } from "@COMPONENTS/Themed";
 import Colors from "@CONSTANTS/Colors";
+import { AnimationText } from "@MODALS/SearchAnimation.modal";
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, StyleSheet, View } from "react-native";
-
-const AnimationText = [
-  "Rice",
-  "Chocolate",
-  "Drinks",
-  "Fruits",
-  "Vegetables",
-  "Meat",
-  "Fish",
-  "Spices",
-  "Bakery",
-  "Dairy",
-  "Frozen",
-  "Canned",
-  "Snacks",
-  "Sweets",
-  "Others",
-];
-
+import { Animated, StyleSheet } from "react-native";
 const SearchAnimationBox = () => {
   const [index, setIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
@@ -69,17 +52,53 @@ const SearchAnimationBox = () => {
   }, []);
 
   return (
-    <View style={styles.container} className="justify-center  p-2 rounded">
-      <Animated.Text
-        style={[styles.text, { transform: [{ translateY: currentSlideAnim }] }]}
-      >
-        Search "{AnimationText[index]}"
-      </Animated.Text>
-      <Animated.Text
-        style={[styles.text, { transform: [{ translateY: nextSlideAnim }] }]}
-      >
-        Search "{AnimationText[nextIndex]}"
-      </Animated.Text>
+    <View
+      style={styles.container}
+      className="justify-between items-center flex-row  p-2 rounded"
+    >
+      {/* Search icon wrapper */}
+      <View className="justify-start items-center flex-row h-full w-40 ">
+        <Icon
+          name="search"
+          size={16}
+          color={Colors.placeHolder}
+          darkColor={Colors.black}
+        />
+        <View className="h-full ml-1">
+          <Animated.Text
+            style={[
+              styles.text,
+              { transform: [{ translateY: currentSlideAnim }] },
+            ]}
+          >
+            Search "{AnimationText[index]}"
+          </Animated.Text>
+          <Animated.Text
+            style={[
+              styles.text,
+              { transform: [{ translateY: nextSlideAnim }] },
+            ]}
+          >
+            Search "{AnimationText[nextIndex]}"
+          </Animated.Text>
+        </View>
+      </View>
+      {/* Microphone wrapper */}
+      <View className=" items-center flex-row h-full">
+        <Text
+          darkColor={Colors.placeHolder}
+          lightColor={Colors.placeHolder}
+          className="mr-1"
+        >
+          |
+        </Text>
+        <Icon
+          name="microphone"
+          size={16}
+          color={Colors.placeHolder}
+          darkColor={Colors.black}
+        />
+      </View>
     </View>
   );
 };
@@ -95,8 +114,8 @@ const styles = StyleSheet.create({
   },
   text: {
     position: "absolute",
-    width: "100%",
-    textAlign: "left",
+    // width: "100%",
+    // textAlign: "left",
     color: Colors.placeHolder,
   },
 });

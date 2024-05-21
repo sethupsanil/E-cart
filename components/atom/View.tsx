@@ -6,12 +6,18 @@ import { ViewProps } from "@TYPES/atom.type";
 
 export const View = (props: ViewProps) => {
   const { style, lightColor, darkColor, className, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "background"
-  );
+  let backgroundColor;
+
+  if (lightColor || darkColor)
+    backgroundColor = useThemeColor(
+      { light: lightColor, dark: darkColor },
+      "background"
+    );
   const borderColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
+    {
+      light: otherProps.lightBorder ? otherProps.lightBorder : lightColor,
+      dark: otherProps.darkBorder ? otherProps.darkBorder : darkColor,
+    },
     "border"
   );
 

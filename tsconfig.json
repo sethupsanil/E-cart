@@ -12,6 +12,7 @@
       "@CONFIG/*": ["./config/*"],
       "@CONSTANTS/*": ["./constants/*"],
       "@INTERFACES/*": ["./interfaces/*"],
+      "@MODALS/*": ["./modal/*"],
       "@LIB/*": ["./lib/*"],
       "@TYPES/*": ["./types/*"],
       "@UTILS/*": ["./utils/*"]
