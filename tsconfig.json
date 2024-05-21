@@ -8,6 +8,7 @@
       "@ATOM/*": ["./components/atom/*"],
       "@HOOKS/*": ["./hooks/*"],
       "@CONTEXT/*": ["./context/*"],
+      "@ENUMS/*": ["./enums/*"],
       "@CONFIG/*": ["./config/*"],
       "@CONSTANTS/*": ["./constants/*"],
       "@INTERFACES/*": ["./interfaces/*"],
