@@ -71,6 +71,7 @@ function RootLayoutNav() {
       >
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="search" options={{ headerShown: false }} />
           <Stack.Screen
             name="profile"
             options={{

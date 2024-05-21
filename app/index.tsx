@@ -7,7 +7,10 @@ import { View } from "@COMPONENTS/Themed";
 
 const index = () => {
   return (
-    <ScrollView>
+    <ScrollView
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+    >
       <View className="flex-1">
         {/* Header */}
         <Header />
