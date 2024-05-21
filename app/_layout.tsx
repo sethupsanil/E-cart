@@ -67,7 +67,7 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? Dark : Light}>
       <SafeAreaView
-        style={{ flex: 1, backgroundColor: colors.background, margin: 5 }}
+        style={{ flex: 1, backgroundColor: colors.background, padding: 15 }}
       >
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />

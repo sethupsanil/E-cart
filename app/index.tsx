@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Appearance, ScrollView } from "react-native";
+import { Appearance, ScrollView, TouchableOpacity } from "react-native";
 
 import Header from "@COMPONENTS/Header";
-import { View } from "@COMPONENTS/Themed";
+import SearchAnimationBox from "@COMPONENTS/SearchAnimationBox";
+import { Text, View } from "@COMPONENTS/Themed";
 
 const index = () => {
   const [theme, setTheme] = useState(Appearance.getColorScheme());
@@ -20,6 +21,11 @@ const index = () => {
       <View className="flex-1">
         {/* Header */}
         <Header />
+        {/* Search  */}
+        <SearchAnimationBox />
+        <TouchableOpacity onPress={toggleColorScheme}>
+          <Text>Toggle Color Scheme</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

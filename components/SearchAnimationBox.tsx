@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Animated, StyleSheet, View } from "react-native";
 
 const AnimationText = [
@@ -22,9 +22,8 @@ const AnimationText = [
 const SearchAnimationBox = () => {
   const [index, setIndex] = useState(0);
   const [nextIndex, setNextIndex] = useState(1);
-
-  const currentSlideAnim = new Animated.Value(0); // Initial value for the current text
-  const nextSlideAnim = new Animated.Value(50); // Initial value for the next text below the view
+  const currentSlideAnim = useRef(new Animated.Value(0)).current; // Initial value for the current text
+  const nextSlideAnim = useRef(new Animated.Value(50)).current; // Initial value for the next text below the view
 
   useEffect(() => {
     let isMounted = true;
@@ -34,18 +33,18 @@ const SearchAnimationBox = () => {
         // Animate current text to move up
         Animated.timing(currentSlideAnim, {
           toValue: -50,
-          duration: 2000,
+          duration: 850,
           useNativeDriver: true,
         }),
         // Animate next text to move up
         Animated.timing(nextSlideAnim, {
           toValue: 0,
-          duration: 2000,
+          duration: 850,
           useNativeDriver: true,
         }),
       ]).start(() => {
         if (isMounted) {
-          setIndex(nextIndex);
+          setIndex((prevIndex) => (prevIndex + 1) % AnimationText.length);
           setNextIndex((prevIndex) => (prevIndex + 1) % AnimationText.length);
 
           // Reset animation values
@@ -53,7 +52,7 @@ const SearchAnimationBox = () => {
           nextSlideAnim.setValue(50);
 
           // Trigger the animation again after a short delay
-          setTimeout(animate, 1000);
+          setTimeout(animate, 3000);
         }
       });
     };
@@ -66,25 +65,35 @@ const SearchAnimationBox = () => {
       currentSlideAnim.stopAnimation();
       nextSlideAnim.stopAnimation();
     };
-  }, [nextIndex]);
+  }, []);
 
   return (
-    <View className="relative h-[25px] overflow-hidden border rounded p-1">
+    <View
+      style={styles.container}
+      className="justify-center border p-2 rounded"
+    >
       <Animated.Text
         style={[styles.text, { transform: [{ translateY: currentSlideAnim }] }]}
       >
-        Search {AnimationText[index]}
+        Search "{AnimationText[index]}"
       </Animated.Text>
       <Animated.Text
         style={[styles.text, { transform: [{ translateY: nextSlideAnim }] }]}
       >
-        Search {AnimationText[nextIndex]}
+        Search "{AnimationText[nextIndex]}"
       </Animated.Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    position: "relative",
+    height: 35,
+    overflow: "hidden",
+
+    backgroundColor: "#f0f0f0",
+  },
   text: {
     position: "absolute",
     width: "100%",
