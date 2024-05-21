@@ -69,10 +69,7 @@ const SearchAnimationBox = () => {
   }, []);
 
   return (
-    <View
-      style={styles.container}
-      className="justify-center border p-2 rounded"
-    >
+    <View style={styles.container} className="justify-center  p-2 rounded">
       <Animated.Text
         style={[styles.text, { transform: [{ translateY: currentSlideAnim }] }]}
       >
@@ -92,13 +89,15 @@ const styles = StyleSheet.create({
     position: "relative",
     height: 35,
     overflow: "hidden",
-
+    borderColor: Colors.whiteSecondary,
+    borderWidth: 1,
     backgroundColor: Colors.whitePrimary,
   },
   text: {
     position: "absolute",
     width: "100%",
     textAlign: "left",
+    color: Colors.placeHolder,
   },
 });
 

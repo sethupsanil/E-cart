@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Icon, Text, View } from "@COMPONENTS/Themed";
+import { Icon, Link, Text, View } from "@COMPONENTS/Themed";
 import { Pressable } from "react-native";
 
 const Header = () => {
@@ -12,13 +12,16 @@ const Header = () => {
         <Text className="font-psemibold text-2xl">10 minutes</Text>
         <Text className="font-pregular text-xs">location</Text>
       </View>
+
       <Pressable>
         {({ pressed }) => (
-          <Icon
-            name="user-circle"
-            size={54}
-            style={{ opacity: pressed ? 0.5 : 1 }}
-          />
+          <Link href={"/profile"}>
+            <Icon
+              name="user-circle"
+              size={54}
+              style={{ opacity: pressed ? 0.5 : 1 }}
+            />
+          </Link>
         )}
       </Pressable>
     </View>

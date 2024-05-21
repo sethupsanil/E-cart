@@ -11,7 +11,7 @@ export default {
     tint: tintColorLight,
     tabIconDefault: "#ccc",
     tabIconSelected: tintColorLight,
-    primary: whitePrimary,
+    primary: black,
     border: "#D8D8D8",
     notification: "#FF3B30",
     card: white,
@@ -23,8 +23,8 @@ export default {
     tabIconDefault: "#ccc",
     tabIconSelected: tintColorDark,
     border: "#272729",
-    primary: "#f00",
-    card: "#121212",
+    primary: white,
+    card: black,
     notification: "#FF453A",
   },
 
@@ -35,6 +35,7 @@ export default {
   white,
   whitePrimary,
   whiteSecondary,
+  placeHolder: "#999999",
   tintColorLight,
   tintColorDark,
 };

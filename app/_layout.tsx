@@ -72,6 +72,14 @@ function RootLayoutNav() {
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen
+            name="profile"
+            options={{
+              headerShown: true,
+              headerBackTitleVisible: false,
+              title: "Profile",
+            }}
+          />
+          <Stack.Screen
             name="modal"
             options={{
               presentation: "modal",
