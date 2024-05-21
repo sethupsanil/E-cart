@@ -3,8 +3,8 @@ import { Linking, Platform } from "react-native";
 
 import * as Location from "expo-location";
 
-import { useGlobalContext } from "@/context/GlobalContext.context";
-import { ErrorMessageType, LocationType } from "@/types/useLocation.type";
+import { useGlobalContext } from "@CONTEXT/GlobalContext.context";
+import { ErrorMessageType, LocationType } from "@TYPES/useLocation.type";
 
 export const useLocation = () => {
   const { location, setLocation } = useGlobalContext() as {

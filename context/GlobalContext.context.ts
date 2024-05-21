@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-import { GlobalContextProps } from "@/interfaces/GlobalContextProps.interface";
+import { GlobalContextProps } from "@INTERFACES/GlobalContextProps.interface";
 
 // Create the context with an undefined initial value
 const GlobalContext = createContext<GlobalContextProps | undefined>(undefined);

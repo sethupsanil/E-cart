@@ -4,6 +4,7 @@ import { useColorScheme } from "@HOOKS/useColorScheme.hook";
 
 import Dark from "@CONFIG/DarkTheme.config";
 import Light from "@CONFIG/LightTheme.config";
+import GlobalProvider from "@CONTEXT/GlobalProvider.provider";
 import { useTheme } from "@HOOKS/useTheme.hook";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { ThemeProvider } from "@react-navigation/native";
@@ -66,32 +67,34 @@ function RootLayoutNav() {
   const { colors } = useTheme();
   return (
     <ThemeProvider value={colorScheme === "dark" ? Dark : Light}>
-      <SafeAreaView
-        style={{ flex: 1, backgroundColor: colors.background, padding: 15 }}
-      >
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="search" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="profile"
-            options={{
-              headerShown: true,
-              headerBackTitleVisible: false,
-              title: "Profile",
-            }}
-          />
-          <Stack.Screen
-            name="modal"
-            options={{
-              presentation: "modal",
-              autoHideHomeIndicator: true,
-              headerShown: false,
+      <GlobalProvider>
+        <SafeAreaView
+          style={{ flex: 1, backgroundColor: colors.background, padding: 15 }}
+        >
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="search" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="profile"
+              options={{
+                headerShown: true,
+                headerBackTitleVisible: false,
+                title: "Profile",
+              }}
+            />
+            <Stack.Screen
+              name="modal"
+              options={{
+                presentation: "modal",
+                autoHideHomeIndicator: true,
+                headerShown: false,
 
-              freezeOnBlur: true,
-            }}
-          />
-        </Stack>
-      </SafeAreaView>
+                freezeOnBlur: true,
+              }}
+            />
+          </Stack>
+        </SafeAreaView>
+      </GlobalProvider>
     </ThemeProvider>
   );
 }

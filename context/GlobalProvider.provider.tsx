@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 
-import { Product } from "@/interfaces/Product.interface";
+import { Product } from "@INTERFACES/Product.interface";
 import GlobalContext from "./GlobalContext.context";
 
 interface GlobalProviderProps {
