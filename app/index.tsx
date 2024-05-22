@@ -4,6 +4,7 @@ import { ScrollView } from "react-native";
 import Header from "@COMPONENTS/Header";
 import SearchAnimationBox from "@COMPONENTS/SearchAnimationBox";
 import { View } from "@COMPONENTS/Themed";
+import ListSlider from "@COMPONENTS/organism/ListSlider";
 
 const index = () => {
   return (
@@ -14,8 +15,15 @@ const index = () => {
       <View className="flex-1">
         {/* Header */}
         <Header />
-        {/* Search  */}
+        {/* Search Animation */}
         <SearchAnimationBox />
+        {/* Best Sellers */}
+        <ListSlider
+          title="Bestsellers"
+          subTitle="see all"
+          data={[1, 2, 3, 4]}
+          renderItem={<SearchAnimationBox />}
+        />
       </View>
     </ScrollView>
   );
