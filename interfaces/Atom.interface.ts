@@ -3,5 +3,9 @@ export interface CustomButtonProps {
   containerStyles?: any;
   textStyles?: any;
   isLoading?: boolean;
+  darkBackgroundColor?: string;
+  lightBackgroundColor?: string;
+  lightBorder?: string;
+  darkBorder?: string;
   handlePress?: () => void;
 }

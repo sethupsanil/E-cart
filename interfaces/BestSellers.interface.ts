@@ -9,3 +9,7 @@ export interface Product {
   title: string;
   image: string;
 }
+
+export interface BestSellersProps {
+  data: BestSellersInterface;
+}

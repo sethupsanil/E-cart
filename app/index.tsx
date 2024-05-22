@@ -7,12 +7,12 @@ import { View } from "@COMPONENTS/Themed";
 import AnimatedView from "@COMPONENTS/molecule/AnimatedView";
 import BestSellers from "@COMPONENTS/molecule/BestSellers";
 import CategoryList from "@COMPONENTS/molecule/CategoryList";
+import ProductItem from "@COMPONENTS/molecule/ProductItem";
 import ListSlider from "@COMPONENTS/organism/ListSlider";
 import {
   BeautyAndPersonalCareModal,
   BestSellersModal,
-  GroceryAndKitchenModal,
-  SnacksAndDrinksModal,
+  HotDealsData,
 } from "@MODALS/index";
 
 const index = () => {
@@ -38,16 +38,26 @@ const index = () => {
           )}
         />
         {/* Grocery & Kitchen */}
-        <CategoryList
+        {/* <CategoryList
           data={GroceryAndKitchenModal}
           title="Grocery & Kitchen "
-        />
+        /> */}
         {/* Snacks & Drinks */}
-        <CategoryList data={SnacksAndDrinksModal} title="Snacks & Drinks " />
+        {/* <CategoryList data={SnacksAndDrinksModal} title="Snacks & Drinks " /> */}
         {/* Beauty & Personal Care */}
         <CategoryList
           data={BeautyAndPersonalCareModal}
           title="Beauty & Personal Care "
+        />
+        {/* Hot deals */}
+        <ListSlider
+          title="Hot Deals"
+          subTitle="see all"
+          data={HotDealsData}
+          hideSubTitle={true}
+          renderItem={({ item, index }: any) => (
+            <ProductItem data={item} key={index} />
+          )}
         />
       </View>
     </ScrollView>

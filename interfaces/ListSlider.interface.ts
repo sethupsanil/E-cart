@@ -3,8 +3,8 @@ export interface ListSliderProps {
   subTitle: string;
   data: any[];
   renderItem?: any;
-  showTitle?: boolean;
-  showSubTitle?: boolean;
+  hideTitle?: boolean;
+  hideSubTitle?: boolean;
   onItemPressed?: () => void;
   onSubTitlePressed?: () => void;
 }

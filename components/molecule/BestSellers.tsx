@@ -1,13 +1,10 @@
 import { Text, View } from "@COMPONENTS/Themed";
 import CustomButton from "@COMPONENTS/atom/CustomButton";
 import Colors from "@CONSTANTS/Colors";
-import { BestSellersInterface } from "@INTERFACES/BestSellers.interface";
+import { BestSellersProps } from "@INTERFACES/BestSellers.interface";
 import React from "react";
 import { Image } from "react-native";
 
-interface BestSellersProps {
-  data: BestSellersInterface;
-}
 const BestSellers = ({ data }: BestSellersProps) => {
   return (
     <View className="w-[110px] h-[200px] ">

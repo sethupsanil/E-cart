@@ -8,10 +8,14 @@ const ListSlider = (props: ListSliderProps) => {
   return (
     <>
       <View className="flex-row justify-between items-center mt-2 mr-1">
-        <Text className="text-lg font-bold" lightColor={Colors.light.text}>
-          {props.title}
-        </Text>
-        <Text className="text-xs text-green">{props.subTitle}</Text>
+        {!props.hideTitle && (
+          <Text className="text-lg font-bold" lightColor={Colors.light.text}>
+            {props.title}
+          </Text>
+        )}
+        {!props.hideSubTitle && (
+          <Text className="text-xs text-green">{props.subTitle}</Text>
+        )}
       </View>
       <FlatList
         horizontal

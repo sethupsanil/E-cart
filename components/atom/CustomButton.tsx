@@ -8,6 +8,9 @@ const CustomButton = ({
   containerStyles,
   textStyles,
   isLoading,
+  lightBackgroundColor,
+  darkBackgroundColor,
+  ...prop
 }: CustomButtonProps) => {
   return (
     <TouchableOpacity
@@ -19,7 +22,10 @@ const CustomButton = ({
         className={`rounded-lg  h-[25px]  flex flex-row justify-center items-center border ${containerStyles} ${
           isLoading ? "opacity-50" : ""
         }`}
-        lightBorder={Colors.whiteSecondary}
+        lightBorder={prop.lightBorder ? prop.lightBorder : Colors.greenPrimary}
+        darkBorder={prop.darkBorder ? prop.darkBorder : Colors.greenPrimary}
+        lightColor={lightBackgroundColor ? lightBackgroundColor : "transparent"}
+        darkColor={darkBackgroundColor ? darkBackgroundColor : "transparent"}
       >
         <Text
           className={`text-green-primary font-regular text-xs ${textStyles}`}

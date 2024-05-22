@@ -31,6 +31,7 @@ export default {
 
   green: "#0d831f",
   greenPrimary: "#0C831F",
+  greenShade: "#f7fff9",
   black,
   darkPrimary: "#f00",
   white,
