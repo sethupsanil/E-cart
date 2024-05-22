@@ -4,6 +4,7 @@ import { ScrollView } from "react-native";
 import Header from "@COMPONENTS/Header";
 import SearchAnimationBox from "@COMPONENTS/SearchAnimationBox";
 import { View } from "@COMPONENTS/Themed";
+import AnimatedView from "@COMPONENTS/molecule/AnimatedView";
 import BestSellers from "@COMPONENTS/molecule/BestSellers";
 import ListSlider from "@COMPONENTS/organism/ListSlider";
 import { BestSellersModal } from "@MODALS/BestSellers.modal";
@@ -25,7 +26,9 @@ const index = () => {
           subTitle="see all"
           data={BestSellersModal}
           renderItem={({ item, index }: any) => (
-            <BestSellers key={index} data={item} />
+            <AnimatedView key={index}>
+              <BestSellers data={item} />
+            </AnimatedView>
           )}
         />
       </View>
