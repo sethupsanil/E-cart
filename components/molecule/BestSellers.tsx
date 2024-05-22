@@ -48,7 +48,9 @@ const BestSellers = ({ data }: BestSellersProps) => {
       {/* Image box container ends*/}
       {/* Text wrapper */}
       <View className="justify-start text-ellipsis w-[70%]  mt-1 min-h-[50px]">
-        <Text className="text-[12px] font-pregular">{data.title}</Text>
+        <Text className="text-[12px] font-pregular capitalize">
+          {data.title}
+        </Text>
         <Text className="text-[10px] " lightColor={Colors.light.text}>
           {data.totalCount} products
         </Text>
