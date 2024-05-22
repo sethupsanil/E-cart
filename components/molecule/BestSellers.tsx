@@ -28,6 +28,7 @@ const BestSellers = ({ data }: BestSellersProps) => {
               source={{
                 uri: product.image,
               }}
+              resizeMode="contain"
             />
           </View>
         ))}

@@ -6,8 +6,10 @@ import SearchAnimationBox from "@COMPONENTS/SearchAnimationBox";
 import { View } from "@COMPONENTS/Themed";
 import AnimatedView from "@COMPONENTS/molecule/AnimatedView";
 import BestSellers from "@COMPONENTS/molecule/BestSellers";
+import CategoryList from "@COMPONENTS/molecule/CategoryList";
 import ListSlider from "@COMPONENTS/organism/ListSlider";
 import { BestSellersModal } from "@MODALS/BestSellers.modal";
+import { GroceryAndKitchenModal } from "@MODALS/GroceryAndKitchen.modal";
 
 const index = () => {
   return (
@@ -30,6 +32,11 @@ const index = () => {
               <BestSellers data={item} />
             </AnimatedView>
           )}
+        />
+        {/* Grocery & Kitchen */}
+        <CategoryList
+          data={GroceryAndKitchenModal}
+          title="Grocery & Kitchen "
         />
       </View>
     </ScrollView>
