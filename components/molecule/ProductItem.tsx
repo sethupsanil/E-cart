@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
 
 import { Text, View } from "@COMPONENTS/Themed";
@@ -12,9 +12,20 @@ import { ProductItemProps } from "@INTERFACES/ProductItem.interface";
 
 const ProductItem = ({ data }: ProductItemProps) => {
   const [showActionBUtton, setShowActionBUtton] = useState(false);
+  const [unit, setUnit] = useState("");
   const onProductPressHandler = () => {
     console.log("Product Pressed", data);
   };
+  useEffect(() => {
+    const selectedType = data.selectionType;
+    if (selectedType === "size" && data.sizeList) {
+      setUnit(data.sizeList[0].size);
+    }
+    if (selectedType === "unit" && data.unitList) {
+      setUnit(data.unitList[0].size);
+    }
+  }, []);
+
   return (
     <AnimatedView onPress={onProductPressHandler}>
       <View className="w-[110px] h-[340px] ">
@@ -36,12 +47,10 @@ const ProductItem = ({ data }: ProductItemProps) => {
         {/* Text wrapper */}
         <View className="justify-start text-ellipsis w-[70%] mt-1 min-h-[70px]">
           <TimeStamp time={data.deliveryETA} />
-          <Text className="text-xs font-pregular capitalize mt-1">
+          <Text className="text-xs font-pregular capitalize mt-1 min-h-[30px]">
             {data.name}
           </Text>
-          <Text className="text-[10px] font-pregular mt-1">
-            {data.selectionType}
-          </Text>
+          <Text className="text-[10px] font-pregular mt-1">{unit}</Text>
         </View>
 
         {/*  */}

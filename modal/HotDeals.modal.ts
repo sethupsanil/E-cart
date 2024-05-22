@@ -42,7 +42,7 @@ export const HotDealsData: ProductItem[] = [
     unitList: [
       {
         id: 1,
-        size: "1kg",
+        size: "300g",
         price: 500,
         countInStock: 10,
       },
@@ -92,13 +92,13 @@ export const HotDealsData: ProductItem[] = [
     sizeList: [
       {
         id: 1,
-        size: "1kg",
+        size: "500g",
         price: 600,
         countInStock: 10,
       },
       {
         id: 2,
-        size: "2kg",
+        size: "1kg",
         price: 1200,
         countInStock: 5,
       },
@@ -224,7 +224,7 @@ export const HotDealsData: ProductItem[] = [
     highlights: [
       {
         title: "Weight",
-        description: "1kg",
+        description: "1g",
       },
       {
         title: "Flavour",
