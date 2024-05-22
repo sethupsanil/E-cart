@@ -6,7 +6,7 @@ import AnimatedView from "./AnimatedView";
 
 const CategoryList = ({ data, title }: CategoryListProps) => {
   return (
-    <View className="mt-1 mb-0">
+    <View>
       {/* Title */}
       <Text className="text-lg font-bold" lightColor={Colors.light.text}>
         {title}
