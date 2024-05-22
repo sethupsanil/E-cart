@@ -6,7 +6,6 @@ import { Pressable } from "react-native";
 
 const Header = () => {
   const { errorMsg, location } = useLocation();
-  console.log("Location: ", location, errorMsg);
   return (
     <View className="flex-row justify-between items-center">
       {/* Text wrapper */}

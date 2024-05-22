@@ -4,9 +4,10 @@ const white = "#fff";
 const black = "#000";
 const whitePrimary = "#f8f8f8";
 const whiteSecondary = "#e8e8e8";
+const darkText = "#1f1f1f";
 export default {
   light: {
-    text: black,
+    text: darkText,
     background: white,
     tint: tintColorLight,
     tabIconDefault: "#ccc",
