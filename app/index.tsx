@@ -4,6 +4,7 @@ import { ScrollView } from "react-native";
 import Header from "@COMPONENTS/Header";
 import SearchAnimationBox from "@COMPONENTS/SearchAnimationBox";
 import { View } from "@COMPONENTS/Themed";
+import BestSellers from "@COMPONENTS/molecule/BestSellers";
 import ListSlider from "@COMPONENTS/organism/ListSlider";
 
 const index = () => {
@@ -22,7 +23,7 @@ const index = () => {
           title="Bestsellers"
           subTitle="see all"
           data={[1, 2, 3, 4]}
-          renderItem={<SearchAnimationBox />}
+          renderItem={({ item, index }: any) => <BestSellers item={item} />}
         />
       </View>
     </ScrollView>

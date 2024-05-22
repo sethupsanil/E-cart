@@ -10,5 +10,4 @@ type TextProps = ThemeProps & DefaultText["props"];
 type LinkProps = ThemeProps & ExpoRouter.LinkProps;
 type IconProps = ThemeProps &
   Omit<IconProp<string>, "name"> & { name: IconNames };
-
 export { IconProps, LinkProps, TextProps, ViewProps };

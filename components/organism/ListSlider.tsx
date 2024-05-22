@@ -7,7 +7,7 @@ import { FlatList } from "react-native";
 const ListSlider = (props: ListSliderProps) => {
   return (
     <>
-      <View className="flex-row justify-between items-center mt-2">
+      <View className="flex-row justify-between items-center mt-2 mr-1">
         <Text className="text-lg font-bold" lightColor={Colors.light.text}>
           {props.title}
         </Text>
@@ -19,7 +19,8 @@ const ListSlider = (props: ListSliderProps) => {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={() => <View className="w-2" />}
-        renderItem={() => (props.renderItem ? props.renderItem : null)}
+        renderItem={props.renderItem}
+        // keyExtractor={item => item.id.toString()} // Add this line
       />
     </>
   );
