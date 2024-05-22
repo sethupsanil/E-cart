@@ -6,6 +6,7 @@ import SearchAnimationBox from "@COMPONENTS/SearchAnimationBox";
 import { View } from "@COMPONENTS/Themed";
 import BestSellers from "@COMPONENTS/molecule/BestSellers";
 import ListSlider from "@COMPONENTS/organism/ListSlider";
+import { BestSellersModal } from "@MODALS/BestSellers.modal";
 
 const index = () => {
   return (
@@ -22,8 +23,10 @@ const index = () => {
         <ListSlider
           title="Bestsellers"
           subTitle="see all"
-          data={[1, 2, 3, 4]}
-          renderItem={({ item, index }: any) => <BestSellers item={item} />}
+          data={BestSellersModal}
+          renderItem={({ item, index }: any) => (
+            <BestSellers key={index} data={item} />
+          )}
         />
       </View>
     </ScrollView>
