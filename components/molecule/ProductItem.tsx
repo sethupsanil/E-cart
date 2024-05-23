@@ -7,14 +7,17 @@ import AnimatedView from "@COMPONENTS/molecule/AnimatedView";
 import CartActionLabel from "@COMPONENTS/molecule/CartActionLabel";
 import PriceStamp from "@COMPONENTS/molecule/PriceStamp";
 import TimeStamp from "@COMPONENTS/molecule/TimeStamp";
+import BottomSheet from "@COMPONENTS/organism/BottomSheet";
 import Colors from "@CONSTANTS/Colors";
 import { ProductItemProps } from "@INTERFACES/ProductItem.interface";
 
 const ProductItem = ({ data }: ProductItemProps) => {
   const [showActionBUtton, setShowActionBUtton] = useState(false);
   const [unit, setUnit] = useState("");
+
   const onProductPressHandler = () => {
-    console.log("Product Pressed", data);
+    // console.log("Product Pressed", data);
+    // toggleModal();
   };
   useEffect(() => {
     const selectedType = data.selectionType;
@@ -74,6 +77,9 @@ const ProductItem = ({ data }: ProductItemProps) => {
           )}
         </View>
       </View>
+      {/*  */}
+      <BottomSheet isVisible={true} renderItem={<Text>Hao</Text>} />
+      {/*  */}
     </AnimatedView>
   );
 };
