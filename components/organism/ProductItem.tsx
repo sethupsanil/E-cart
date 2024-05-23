@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
 
+import ProductDetails from "@COMPONENTS/ProductDetails";
 import { Text, View } from "@COMPONENTS/Themed";
 import CustomButton from "@COMPONENTS/atom/CustomButton";
 import AnimatedView from "@COMPONENTS/molecule/AnimatedView";
@@ -78,7 +79,10 @@ const ProductItem = ({ data }: ProductItemProps) => {
         </View>
       </View>
       {/*  */}
-      <BottomSheet isVisible={true} renderItem={<Text>Hao</Text>} />
+      <BottomSheet
+        isVisible={true}
+        renderItem={<ProductDetails data={data} />}
+      />
       {/*  */}
     </AnimatedView>
   );

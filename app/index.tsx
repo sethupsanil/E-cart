@@ -7,8 +7,8 @@ import { View } from "@COMPONENTS/Themed";
 import AnimatedView from "@COMPONENTS/molecule/AnimatedView";
 import BestSellers from "@COMPONENTS/molecule/BestSellers";
 import CategoryList from "@COMPONENTS/molecule/CategoryList";
-import ProductItem from "@COMPONENTS/molecule/ProductItem";
 import ListSlider from "@COMPONENTS/organism/ListSlider";
+import ProductItem from "@COMPONENTS/organism/ProductItem";
 import {
   BeautyAndPersonalCareModal,
   BestSellersModal,

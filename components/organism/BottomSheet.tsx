@@ -51,7 +51,7 @@ const BottomSheet = (props: BottomSheetProps) => {
         {/* Child modal */}
         <Modal
           isVisible={true}
-          swipeDirection="down"
+          // swipeDirection="down"
           onSwipeMove={onSwipeHandler}
           style={{ justifyContent: "flex-end", margin: 0 }}
           //   onSwipeComplete={() => console.log("swipe complete")}
