@@ -1,7 +1,9 @@
+import { Text, View } from "@COMPONENTS/Themed";
 import { ProductDescriptionProps } from "@INTERFACES/ProductDescriptionProps.interface";
 import { highlights } from "@INTERFACES/ProductItem.interface";
+
 import React, { useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Details = ({ data }: { data: highlights }) => {
@@ -10,9 +12,9 @@ const Details = ({ data }: { data: highlights }) => {
   }
   return (
     <View className="text-sm mt-2 w-full">
-      <Text className="text-[9px] font-pregular">{data.title}</Text>
+      <Text className="text-xs font-pregular">{data.title}</Text>
 
-      <Text className="text-[8px] font-pregular border-2 border-black">
+      <Text className="text-[10px] font-pregular border-2 border-black">
         {data.description}
       </Text>
     </View>
@@ -32,7 +34,7 @@ const ProductDescription = ({
 
   return (
     <SafeAreaView>
-      <View className="mt-2">
+      <View className="mx-2">
         <Text className="text-sm font-psemibold">{title}</Text>
 
         {/* product description */}

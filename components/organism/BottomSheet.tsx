@@ -48,9 +48,11 @@ const BottomSheet = (props: BottomSheetProps) => {
           isVisible={isModalVisible}
           animationOut={"slideOutDown"}
           animationOutTiming={500}
-          // swipeDirection="down"
-          // onSwipeComplete={toggleModal}
-          style={{ justifyContent: "flex-end", margin: 0 }}
+          style={{
+            justifyContent: "flex-end",
+            margin: 0,
+            backgroundColor: "rgba(0,0,0)",
+          }}
         >
           {/* Close icon */}
           <TouchableOpacity onPress={toggleModal}>
@@ -64,15 +66,16 @@ const BottomSheet = (props: BottomSheetProps) => {
               </View>
             </View>
           </TouchableOpacity>
+          {/* Children */}
           <View
             style={{
-              backgroundColor: "white",
               height: "80%",
               width: "100%",
               borderRadius: 20,
               padding: 0,
               margin: 0,
             }}
+            darkColor={Colors.dark.background}
           >
             {props.renderItem}
           </View>

@@ -22,10 +22,15 @@ const HighlightBox = ({ highlights }: HighlightBoxProps) => {
             <View
               key={index}
               lightColor={Colors.whiteSecondary}
+              darkColor={Colors.dark.tabIconDefault}
               className=" justify-center items-center rounded-lg  p-2 w-[100px] "
             >
-              <Text className="text-xs font-pregular">{item.title}</Text>
-              <Text className="text-xs font-pmedium">{item.description}</Text>
+              <Text className="text-xs font-pregular" darkColor={Colors.black}>
+                {item.title}
+              </Text>
+              <Text className="text-xs font-pmedium" darkColor={Colors.black}>
+                {item.description}
+              </Text>
             </View>
           )}
         />

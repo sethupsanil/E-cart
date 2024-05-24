@@ -43,10 +43,16 @@ const SelectionBox = ({ props, onSelectedItemChanges }: SelectionBoxProps) => {
           <AnimatedView onPress={() => handleSelectedItem(index)} key={index}>
             <View className="flex-row justify-start  h-[60px] ">
               <View
-                className="flex items-center justify-center  w-[120px] border-[0.5px]   rounded-[8px]"
+                className="flex items-center justify-center w-[120px] border-[0.5px] rounded-[8px]"
                 style={[index === selectedItem && styles.active]}
+                darkBorder={Colors.white}
               >
-                <Text className="text-xs font-pregular">{item.size}</Text>
+                <Text
+                  className="text-xs font-pregular"
+                  darkColor={Colors.green}
+                >
+                  {item.size}
+                </Text>
                 <PriceStamp
                   price={item.price}
                   actualPrice={item.price}

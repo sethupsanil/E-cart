@@ -15,12 +15,14 @@ const PriceStamp = ({
       }`}
     >
       <View className="flex-row justify-start items-center">
-        <Icon name="rupee" size={10} />
-        <Text className="font-psemibold">{price}</Text>
+        <Icon name="rupee" size={10} darkColor={Colors.green} />
+        <Text className="font-psemibold" darkColor={Colors.green}>
+          {price}
+        </Text>
       </View>
       {actualPrice && (
         <View className="flex-row justify-start items-center ">
-          <Icon name="rupee" size={10} />
+          <Icon name="rupee" size={10} darkColor={Colors.placeHolder} />
           <Text
             className="font-pregular text-xs   line-through"
             lightColor={Colors.placeHolder}
