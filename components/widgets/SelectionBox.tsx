@@ -9,7 +9,11 @@ import { SelectionBoxProps } from "@INTERFACES/SelectionBox.interface";
 import React, { useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 
-const SelectionBox = ({ props, onSelectedItemChanges }: SelectionBoxProps) => {
+const SelectionBox = ({
+  props,
+  onSelectedItemChanges,
+  title,
+}: SelectionBoxProps) => {
   const { setCart, cart, selectedProductData } = useGlobalContext();
   const [selectedItem, setSelectedItem] = useState(0);
   const handleSelectedItem = (index: number) => {
@@ -33,7 +37,7 @@ const SelectionBox = ({ props, onSelectedItemChanges }: SelectionBoxProps) => {
 
   return (
     <>
-      <Text className="text-base font-psemibold mb-3">Select Size</Text>
+      <Text className="text-base font-psemibold mb-3">Select {title}</Text>
       <FlatList
         data={props}
         horizontal

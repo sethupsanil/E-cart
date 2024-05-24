@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ScrollView } from "react-native";
 
 import { Icon, Text, View } from "@COMPONENTS/Themed";
@@ -8,14 +8,21 @@ import TimeStamp from "@COMPONENTS/molecule/TimeStamp";
 import HighlightBox from "@COMPONENTS/widgets/HighlightBox";
 import ProductDescription from "@COMPONENTS/widgets/ProductDescription";
 import SelectionBox from "@COMPONENTS/widgets/SelectionBox";
-import { ProductItemProps } from "@INTERFACES/ProductItem.interface";
+import { ProductItemProps, sizeList } from "@INTERFACES/ProductItem.interface";
 const ProductDetails = ({ data }: ProductItemProps) => {
+  const [selectionData, setSelectionData] = useState<sizeList[]>([]);
   const scroll = useRef<ScrollView>(null);
   const handleViewMore = () => {
     // TODO : scroll update
     if (scroll.current) scroll.current.scrollToEnd({ animated: true });
     console.log("scroll");
   };
+  useEffect(() => {
+    if (data.selectionType === "size" && data.sizeList)
+      setSelectionData(data.sizeList);
+    else if (data.selectionType === "unit" && data.unitList)
+      setSelectionData(data.unitList);
+  }, [data.selectionType]);
   return (
     <ScrollView ref={scroll}>
       <ImageSlider images={data.image} />
@@ -34,7 +41,8 @@ const ProductDetails = ({ data }: ProductItemProps) => {
         {/* Select unit/Size */}
         <View className="">
           <SelectionBox
-            props={data.unitList || []}
+            props={selectionData || []}
+            title={data.selectionType}
             onSelectedItemChanges={(index: number) => console.log(index)}
           />
         </View>
