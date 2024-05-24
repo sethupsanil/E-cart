@@ -12,7 +12,9 @@ import ProductItem from "@COMPONENTS/organism/ProductItem";
 import {
   BeautyAndPersonalCareModal,
   BestSellersModal,
+  GroceryAndKitchenModal,
   HotDealsData,
+  SnacksAndDrinksModal,
 } from "@MODALS/index";
 
 const index = () => {
@@ -38,12 +40,13 @@ const index = () => {
           )}
         />
         {/* Grocery & Kitchen */}
-        {/* <CategoryList
+        <CategoryList
           data={GroceryAndKitchenModal}
           title="Grocery & Kitchen "
-        /> */}
+          containerClass="mt-3"
+        />
         {/* Snacks & Drinks */}
-        {/* <CategoryList data={SnacksAndDrinksModal} title="Snacks & Drinks " /> */}
+        <CategoryList data={SnacksAndDrinksModal} title="Snacks & Drinks " />
         {/* Beauty & Personal Care */}
         <CategoryList
           data={BeautyAndPersonalCareModal}

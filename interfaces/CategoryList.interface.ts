@@ -1,6 +1,7 @@
 export interface CategoryListProps {
   data: CategoryData[];
   title: string;
+  containerClass?: any;
 }
 
 export interface CategoryData {

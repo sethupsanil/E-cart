@@ -1,12 +1,14 @@
 import { Text, View } from "@COMPONENTS/Themed";
 import Colors from "@CONSTANTS/Colors";
 import { CategoryListProps } from "@INTERFACES/CategoryList.interface";
-import { Image } from "react-native";
+import { Dimensions, Image } from "react-native";
 import AnimatedView from "./AnimatedView";
 
-const CategoryList = ({ data, title }: CategoryListProps) => {
+const CategoryList = ({ data, title, containerClass }: CategoryListProps) => {
+  const { width } = Dimensions.get("window");
+  const imageWidth = Math.floor(width / 3 - 50);
   return (
-    <View>
+    <View className={containerClass}>
       {/* Title */}
       <Text className="text-lg font-bold" lightColor={Colors.light.text}>
         {title}
@@ -17,9 +19,10 @@ const CategoryList = ({ data, title }: CategoryListProps) => {
             <View className="flex">
               {/* Image */}
               <View
-                className=" w-[90px] h-[90px] rounded-lg mr-[10px] items-center justify-center"
+                className=" h-[90px] rounded-lg mr-[10px] items-center justify-center"
                 lightColor={Colors.tintColorLight}
                 darkColor={Colors.tintColorLight}
+                style={{ width: imageWidth }}
               >
                 <Image
                   source={{ uri: item.image }}
@@ -28,7 +31,10 @@ const CategoryList = ({ data, title }: CategoryListProps) => {
                 />
               </View>
               {/* Category name */}
-              <View className="w-[90px] min-h-[50px] justify-start items-center mt-1">
+              <View
+                className=" min-h-[50px] justify-start items-center mt-1"
+                style={{ width: imageWidth }}
+              >
                 <Text className="text-ellipsis text-xs  font-pregular">
                   {item?.category || ""}
                 </Text>
