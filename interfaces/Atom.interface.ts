@@ -9,3 +9,9 @@ export interface CustomButtonProps {
   darkBorder?: string;
   handlePress?: () => void;
 }
+
+export interface ShareOptionProps {
+  title: string;
+  message: string;
+  url?: string;
+}

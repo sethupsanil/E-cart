@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ScrollView } from "react-native";
 
-import { Icon, Text, View } from "@COMPONENTS/Themed";
+import ShareOption from "@ATOM/ShareOption";
+import { Text, View } from "@COMPONENTS/Themed";
 import Border from "@COMPONENTS/atom/Border";
 import ImageSlider from "@COMPONENTS/molecule/ImageSlider";
 import TimeStamp from "@COMPONENTS/molecule/TimeStamp";
@@ -32,7 +33,7 @@ const ProductDetails = ({ data }: ProductItemProps) => {
           <Text className="text-lg font-psemibold capitalize mt-1">
             {data.name}
           </Text>
-          <Icon name="share" size={20} />
+          <ShareOption title={"Quick it"} message={"Check out this product"} />
         </View>
         {/* Time */}
         <TimeStamp time={data.deliveryETA} />
