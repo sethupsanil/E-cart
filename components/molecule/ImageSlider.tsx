@@ -14,7 +14,7 @@ const ImageSlider = ({ images }: { images: string[] }) => {
   const height = width * 0.7;
 
   const [active, setActive] = useState(0);
-
+  const [borderRadius, setBorderRadius] = useState(20);
   const scrollRef: any = useRef(null);
 
   const onScrollChange = ({ nativeEvent }: any) => {
@@ -36,7 +36,7 @@ const ImageSlider = ({ images }: { images: string[] }) => {
     });
   };
   return (
-    <View className="p-0 mt-0 rounded-[20px]">
+    <View className="p-0   rounded-t-[20px] " style={{ height, width }}>
       <ScrollView
         ref={scrollRef}
         pagingEnabled
@@ -44,14 +44,22 @@ const ImageSlider = ({ images }: { images: string[] }) => {
         onScroll={onScrollChange}
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
-        style={{ width, height, marginTop: 8 }}
-        className="w-full mt-5"
+        onScrollBeginDrag={(event) => {
+          setBorderRadius(0);
+        }}
+        onScrollEndDrag={() => setBorderRadius(20)}
       >
         {images.map((image, index) => (
           <Image
             key={index}
             source={{ uri: image }}
-            style={{ width, height, resizeMode: "cover", borderRadius: 20 }}
+            style={{
+              width,
+              height,
+              resizeMode: "cover",
+              borderTopLeftRadius: borderRadius,
+              borderTopRightRadius: borderRadius,
+            }}
           />
         ))}
       </ScrollView>
