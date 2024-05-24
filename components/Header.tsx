@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <View className="flex-row justify-between items-center">
       {/* Text wrapper */}
-      <View className="justify-start ">
+      <View className="justify-start mb-3">
         <Text className="font-psemibold text-xs">Delivery in</Text>
         <Text className="font-psemibold text-2xl">10 minutes</Text>
         {location && (

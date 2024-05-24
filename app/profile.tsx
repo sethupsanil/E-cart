@@ -15,7 +15,7 @@ const profile = () => {
 
   return (
     <View className="justify-between flex-row w-full h-full p-2">
-      <Text className="text-md font-semibold">profile</Text>
+      <Text className="text-md font-semibold">Dark Theme</Text>
       <Switch
         value={Appearance.getColorScheme() === "dark"}
         onValueChange={toggleColorScheme}
