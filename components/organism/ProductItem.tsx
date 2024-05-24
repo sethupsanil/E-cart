@@ -14,11 +14,13 @@ import { ProductItemProps } from "@INTERFACES/ProductItem.interface";
 
 const ProductItem = ({ data }: ProductItemProps) => {
   const [showActionBUtton, setShowActionBUtton] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [unit, setUnit] = useState("");
 
   const onProductPressHandler = () => {
     // console.log("Product Pressed", data);
     // toggleModal();
+    setShowModal(true);
   };
   useEffect(() => {
     const selectedType = data.selectionType;
@@ -79,8 +81,10 @@ const ProductItem = ({ data }: ProductItemProps) => {
         </View>
       </View>
       {/*  */}
+
       <BottomSheet
-        isVisible={true}
+        isVisible={showModal}
+        onCloseClickHandler={() => setShowModal(false)}
         renderItem={<ProductDetails data={data} />}
       />
       {/*  */}
