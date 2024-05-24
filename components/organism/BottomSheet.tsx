@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TouchableHighlight } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 import { Icon, View } from "@COMPONENTS/Themed";
 import Colors from "@CONSTANTS/Colors";
@@ -48,12 +48,13 @@ const BottomSheet = (props: BottomSheetProps) => {
           isVisible={isModalVisible}
           animationOut={"slideOutDown"}
           animationOutTiming={500}
-          onSwipeMove={onSwipeHandler}
+          // swipeDirection="down"
+          // onSwipeComplete={toggleModal}
           style={{ justifyContent: "flex-end", margin: 0 }}
         >
           {/* Close icon */}
-          <View className="items-center mt-20  h-20">
-            <TouchableHighlight onPress={toggleModal}>
+          <TouchableOpacity onPress={toggleModal}>
+            <View className="items-center mt-20  h-20">
               <View
                 className="w-[40px] h-[40px] rounded-full items-center justify-center"
                 lightColor={Colors.white}
@@ -61,8 +62,8 @@ const BottomSheet = (props: BottomSheetProps) => {
               >
                 <Icon name="close" size={27} />
               </View>
-            </TouchableHighlight>
-          </View>
+            </View>
+          </TouchableOpacity>
           <View
             style={{
               backgroundColor: "white",
