@@ -3,18 +3,26 @@ import Colors from "@CONSTANTS/Colors";
 import { PriceStampProps } from "@INTERFACES/PriceStamp.interface";
 import React from "react";
 
-const PriceStamp = ({ price, actualPrice }: PriceStampProps) => {
+const PriceStamp = ({
+  price,
+  actualPrice,
+  flexDirection = "column",
+}: PriceStampProps) => {
   return (
-    <View className=" justify-start items-center">
+    <View
+      className={`justify-start items-center ${
+        flexDirection == "row" && "flex-row gap-1 "
+      }`}
+    >
       <View className="flex-row justify-start items-center">
         <Icon name="rupee" size={10} />
         <Text className="font-psemibold">{price}</Text>
       </View>
       {actualPrice && (
-        <View className="flex-row justify-start items-center">
+        <View className="flex-row justify-start items-center ">
           <Icon name="rupee" size={10} />
           <Text
-            className="font-pregular text-xs pl-1  line-through"
+            className="font-pregular text-xs   line-through"
             lightColor={Colors.placeHolder}
             darkColor={Colors.placeHolder}
           >

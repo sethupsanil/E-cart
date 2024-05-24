@@ -63,6 +63,8 @@ const BottomSheet = (props: BottomSheetProps) => {
               height: "80%",
               width: "100%",
               borderRadius: 20,
+              padding: 0,
+              margin: 0,
             }}
           >
             {props.renderItem}

@@ -1,4 +1,5 @@
 import { Text, View } from "@COMPONENTS/Themed";
+import ItemSeparator from "@COMPONENTS/atom/ItemSeparator";
 import Colors from "@CONSTANTS/Colors";
 import { ListSliderProps } from "@INTERFACES/ListSlider.interface";
 import React from "react";
@@ -22,7 +23,7 @@ const ListSlider = (props: ListSliderProps) => {
         data={props.data}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View className="w-2" />}
+        ItemSeparatorComponent={() => <ItemSeparator />}
         renderItem={props.renderItem}
         // keyExtractor={item => item.id.toString()} // Add this line
       />

@@ -18,7 +18,6 @@ const ImageSlider = ({ images }: { images: string[] }) => {
   const scrollRef: any = useRef(null);
 
   const onScrollChange = ({ nativeEvent }: any) => {
-    console.log("in");
     const slide = Math.ceil(
       nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width
     );
@@ -37,7 +36,7 @@ const ImageSlider = ({ images }: { images: string[] }) => {
     });
   };
   return (
-    <View>
+    <View className="p-0 mt-0 rounded-[20px]">
       <ScrollView
         ref={scrollRef}
         pagingEnabled
@@ -46,13 +45,13 @@ const ImageSlider = ({ images }: { images: string[] }) => {
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
         style={{ width, height, marginTop: 8 }}
-        // className="w-full mt-2"
+        className="w-full mt-5"
       >
         {images.map((image, index) => (
           <Image
             key={index}
             source={{ uri: image }}
-            style={{ width, height, resizeMode: "cover" }}
+            style={{ width, height, resizeMode: "cover", borderRadius: 20 }}
           />
         ))}
       </ScrollView>
