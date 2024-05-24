@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableHighlight } from "react-native";
 
 import { Icon, View } from "@COMPONENTS/Themed";
 import Colors from "@CONSTANTS/Colors";
@@ -9,11 +9,16 @@ import Modal from "react-native-modal";
 
 const BottomSheet = (props: BottomSheetProps) => {
   const [isModalVisible, setModalVisible] = useState(false);
+
   useEffect(() => {
     setModalVisible(props.isVisible);
   }, [props.isVisible]);
 
   const toggleModal = () => {
+    if (props.onCloseClickHandler) {
+      props.onCloseClickHandler();
+    }
+
     setModalVisible(!isModalVisible);
   };
   const onSwipeHandler = (percentageShown: number) => {
@@ -25,6 +30,8 @@ const BottomSheet = (props: BottomSheetProps) => {
       style={{ justifyContent: "flex-end", margin: 0 }}
       panResponderThreshold={2}
       backdropOpacity={0.7}
+      animationOut={"slideOutDown"}
+      animationOutTiming={500}
     >
       <View
         style={{
@@ -35,28 +42,27 @@ const BottomSheet = (props: BottomSheetProps) => {
           borderTopRightRadius: 20,
         }}
       >
-        {/* Close icon */}
-        <View className="items-center mt-20 ">
-          <TouchableOpacity onPress={toggleModal}>
-            <View
-              className="w-[40px] h-[40px]  rounded-full items-center justify-center"
-              lightColor={Colors.white}
-              darkColor={Colors.placeHolder}
-            >
-              <Icon name="close" size={24} />
-            </View>
-          </TouchableOpacity>
-        </View>
         {/* Close icon ends */}
         {/* Child modal */}
         <Modal
-          isVisible={true}
-          // swipeDirection="down"
+          isVisible={isModalVisible}
+          animationOut={"slideOutDown"}
+          animationOutTiming={500}
           onSwipeMove={onSwipeHandler}
           style={{ justifyContent: "flex-end", margin: 0 }}
-          //   onSwipeComplete={() => console.log("swipe complete")}
-          //   swipeThreshold={90}
         >
+          {/* Close icon */}
+          <View className="items-center mt-20  h-20">
+            <TouchableHighlight onPress={toggleModal}>
+              <View
+                className="w-[40px] h-[40px] rounded-full items-center justify-center"
+                lightColor={Colors.white}
+                darkColor={Colors.placeHolder}
+              >
+                <Icon name="close" size={27} />
+              </View>
+            </TouchableHighlight>
+          </View>
           <View
             style={{
               backgroundColor: "white",
