@@ -16,6 +16,7 @@ export default {
     border: "#D8D8D8",
     notification: "#FF3B30",
     card: white,
+    shadow: black,
   },
   dark: {
     text: white,
@@ -27,6 +28,7 @@ export default {
     primary: white,
     card: black,
     notification: "#FF453A",
+    shadow: "#f00",
   },
 
   green: "#0d831f",

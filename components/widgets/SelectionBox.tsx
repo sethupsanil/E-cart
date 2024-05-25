@@ -59,7 +59,7 @@ const SelectionBox = ({
                 </Text>
                 <PriceStamp
                   price={item.price}
-                  actualPrice={item.price}
+                  actualPrice={item.offerPrice}
                   flexDirection="row"
                 />
               </View>

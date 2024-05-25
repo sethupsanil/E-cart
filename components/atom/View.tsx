@@ -20,10 +20,20 @@ export const View = (props: ViewProps) => {
     },
     "border"
   );
+  let shadowColor;
+  if (otherProps.darkShadow || otherProps.lightShadow) {
+    shadowColor = useThemeColor(
+      {
+        light: otherProps.lightShadow,
+        dark: otherProps.darkShadow,
+      },
+      "shadow"
+    );
+  }
 
   return (
     <DefaultView
-      style={[{ backgroundColor }, { borderColor }, style]}
+      style={[{ backgroundColor }, { borderColor }, { shadowColor }, style]}
       className={className}
       {...otherProps}
     />

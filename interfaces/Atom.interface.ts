@@ -15,3 +15,11 @@ export interface ShareOptionProps {
   message: string;
   url?: string;
 }
+
+export interface CustomViewProps {
+  className?: string;
+  lightBorder?: string;
+  darkBorder?: string;
+  lightShadow?: string;
+  darkShadow?: string;
+}

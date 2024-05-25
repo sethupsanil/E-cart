@@ -3,17 +3,15 @@ import { Image } from "react-native";
 
 import ProductDetails from "@COMPONENTS/ProductDetails";
 import { Text, View } from "@COMPONENTS/Themed";
-import CustomButton from "@COMPONENTS/atom/CustomButton";
 import AnimatedView from "@COMPONENTS/molecule/AnimatedView";
-import CartActionLabel from "@COMPONENTS/molecule/CartActionLabel";
 import PriceStamp from "@COMPONENTS/molecule/PriceStamp";
 import TimeStamp from "@COMPONENTS/molecule/TimeStamp";
 import BottomSheet from "@COMPONENTS/organism/BottomSheet";
 import Colors from "@CONSTANTS/Colors";
 import { ProductItemProps } from "@INTERFACES/ProductItem.interface";
+import AddToCartButton from "../molecule/AddToCartButton";
 
 const ProductItem = ({ data }: ProductItemProps) => {
-  const [showActionBUtton, setShowActionBUtton] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [unit, setUnit] = useState("");
 
@@ -62,22 +60,7 @@ const ProductItem = ({ data }: ProductItemProps) => {
         {/*  */}
         <View className="flex-row justify-between items-center mt-1 w-full">
           <PriceStamp price={data.price} actualPrice={data.actualPrice} />
-          {!showActionBUtton && (
-            <CustomButton
-              title="Add"
-              containerStyles={"h-[33px] w-[56px] "}
-              lightBackgroundColor={Colors.greenShade}
-              darkBackgroundColor={Colors.greenShade}
-              handlePress={() => setShowActionBUtton(true)}
-            />
-          )}
-          {showActionBUtton && (
-            <CartActionLabel
-              decrementQuantity={() => {}}
-              incrementQuantity={() => {}}
-              quantity={1}
-            />
-          )}
+          <AddToCartButton />
         </View>
       </View>
       {/*  */}
