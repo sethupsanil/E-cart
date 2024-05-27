@@ -10,7 +10,7 @@ const CartActionLabel = ({
 }: CartActionLabelProps) => {
   const hapticSelection = useHaptic();
   const action = (type: () => void) => {
-    hapticSelection();
+    // hapticSelection();
     if (type) type();
   };
 

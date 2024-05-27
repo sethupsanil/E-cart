@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { useColorScheme } from "@HOOKS/useColorScheme.hook";
 
+import CartListPage from "@/components/widgets/CartListPage";
 import Dark from "@CONFIG/DarkTheme.config";
 import Light from "@CONFIG/LightTheme.config";
 import GlobalProvider from "@CONTEXT/GlobalProvider.provider";
@@ -69,7 +70,12 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === "dark" ? Dark : Light}>
       <GlobalProvider>
         <SafeAreaView
-          style={{ flex: 1, backgroundColor: colors.background, padding: 15 }}
+          style={{
+            flex: 1,
+            backgroundColor: colors.background,
+            padding: 15,
+            paddingBottom: 0,
+          }}
         >
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -94,6 +100,7 @@ function RootLayoutNav() {
             />
           </Stack>
         </SafeAreaView>
+        <CartListPage />
       </GlobalProvider>
     </ThemeProvider>
   );
