@@ -1,33 +1,53 @@
 import Colors from "@/constants/Colors";
+import { useGlobalContext } from "@/context/GlobalContext.context";
 import { AddToCartButtonProps } from "@/interfaces/AddToCartButton.interface";
 import CustomButton from "@COMPONENTS/atom/CustomButton";
 import CartActionLabel from "@COMPONENTS/molecule/CartActionLabel";
 import React, { useEffect, useState } from "react";
 
 const AddToCartButton = ({ data }: { data: AddToCartButtonProps }) => {
-  const [showActionBUtton, setShowActionBUtton] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const { addToCart, cart, updateQuantity } = useGlobalContext();
+  const [showActionButton, setShowActionButton] = useState(false);
+  const [cartData, setCartData] = useState(
+    cart.find((item) => item.productId.toString() === data.productId.toString())
+  );
+
   const handleIncrement = () => {
-    setQuantity((prev) => prev + 1);
+    let quantity = cartData?.quantity || 0;
+    const maxQuantity = data.countInStock || 1;
+    updateQuantity(
+      data.productId.toString(),
+      quantity + 1 > maxQuantity ? maxQuantity : quantity + 1
+    );
   };
+
   const handleDecrement = () => {
-    setQuantity((prev) => prev - 1);
+    let quantity = cartData?.quantity || 1;
+    updateQuantity(data.productId.toString(), quantity - 1);
   };
 
+  const handleAddToCart = () => {
+    addToCart(data.productId.toString(), 1, data.price, data.name);
+    setShowActionButton(true);
+  };
   useEffect(() => {
-    console.log(data);
-    if (quantity === 0) {
-      setShowActionBUtton(false);
-      setQuantity(1);
+    const cartData = cart.find(
+      (item) => item.productId === data.productId.toString()
+    );
+    if (cartData) {
+      setCartData(cartData);
+      setShowActionButton(true);
+    } else {
+      setShowActionButton(false);
     }
-  }, [quantity]);
+  }, [cart, cartData]);
 
-  if (showActionBUtton)
+  if (showActionButton)
     return (
       <CartActionLabel
         decrementQuantity={handleDecrement}
         incrementQuantity={handleIncrement}
-        quantity={quantity}
+        quantity={cartData?.quantity || 1}
       />
     );
 
@@ -37,7 +57,7 @@ const AddToCartButton = ({ data }: { data: AddToCartButtonProps }) => {
       containerStyles={"h-[33px] w-[56px] "}
       lightBackgroundColor={Colors.greenShade}
       darkBackgroundColor={Colors.greenShade}
-      handlePress={() => setShowActionBUtton(true)}
+      handlePress={handleAddToCart}
     />
   );
 };
