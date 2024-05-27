@@ -1,12 +1,12 @@
 import Colors from "@/constants/Colors";
+import { AddToCartButtonProps } from "@/interfaces/AddToCartButton.interface";
 import CustomButton from "@COMPONENTS/atom/CustomButton";
 import CartActionLabel from "@COMPONENTS/molecule/CartActionLabel";
 import React, { useEffect, useState } from "react";
 
-const AddToCartButton = () => {
+const AddToCartButton = ({ data }: { data: AddToCartButtonProps }) => {
   const [showActionBUtton, setShowActionBUtton] = useState(false);
   const [quantity, setQuantity] = useState(1);
-
   const handleIncrement = () => {
     setQuantity((prev) => prev + 1);
   };
@@ -15,6 +15,7 @@ const AddToCartButton = () => {
   };
 
   useEffect(() => {
+    console.log(data);
     if (quantity === 0) {
       setShowActionBUtton(false);
       setQuantity(1);

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ScrollView } from "react-native";
 
+import { AddToCartButtonProps } from "@/interfaces/AddToCartButton.interface";
 import ShareOption from "@ATOM/ShareOption";
 import { Text, View } from "@COMPONENTS/Themed";
 import Border from "@COMPONENTS/atom/Border";
@@ -15,16 +16,27 @@ import PriceStamp from "./molecule/PriceStamp";
 const ProductDetails = ({ data }: ProductItemProps) => {
   const [selectionData, setSelectionData] = useState<sizeList[]>([]);
   const [selectedUnitIndex, setSelectedUnitIndex] = useState(0);
+  const [addToCartData, setAddToCartData] = useState<AddToCartButtonProps>();
+
   const scroll = useRef<ScrollView>(null);
   const handleViewMore = () => {
     // TODO : scroll update
     if (scroll.current) scroll.current.scrollToEnd({ animated: true });
   };
   useEffect(() => {
-    if (data.selectionType === "size" && data.sizeList)
+    let selectedUnit: sizeList = {} as sizeList;
+    if (data.selectionType === "size" && data.sizeList) {
       setSelectionData(data.sizeList);
-    else if (data.selectionType === "unit" && data.unitList)
+      selectedUnit = data.sizeList[0];
+    } else if (data.selectionType === "unit" && data.unitList) {
       setSelectionData(data.unitList);
+      selectedUnit = data.unitList[0];
+    }
+    setAddToCartData({
+      productId: data.id,
+      price: selectedUnit.price,
+      countInStock: selectedUnit.countInStock,
+    });
   }, [data.selectionType]);
   return (
     <>
@@ -100,7 +112,7 @@ const ProductDetails = ({ data }: ProductItemProps) => {
           </View>
           {/* Right side */}
           <View>
-            <AddToCartButton />
+            {addToCartData && <AddToCartButton data={addToCartData} />}
           </View>
         </View>
       </View>

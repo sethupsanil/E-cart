@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
 
+import { AddToCartButtonProps } from "@/interfaces/AddToCartButton.interface";
 import ProductDetails from "@COMPONENTS/ProductDetails";
 import { Text, View } from "@COMPONENTS/Themed";
 import AnimatedView from "@COMPONENTS/molecule/AnimatedView";
@@ -8,26 +9,32 @@ import PriceStamp from "@COMPONENTS/molecule/PriceStamp";
 import TimeStamp from "@COMPONENTS/molecule/TimeStamp";
 import BottomSheet from "@COMPONENTS/organism/BottomSheet";
 import Colors from "@CONSTANTS/Colors";
-import { ProductItemProps } from "@INTERFACES/ProductItem.interface";
+import { ProductItemProps, sizeList } from "@INTERFACES/ProductItem.interface";
 import AddToCartButton from "../molecule/AddToCartButton";
 
 const ProductItem = ({ data }: ProductItemProps) => {
   const [showModal, setShowModal] = useState(false);
   const [unit, setUnit] = useState("");
-
+  const [addToCartData, setAddToCartData] = useState<AddToCartButtonProps>();
   const onProductPressHandler = () => {
-    // console.log("Product Pressed", data);
-    // toggleModal();
     setShowModal(true);
   };
   useEffect(() => {
     const selectedType = data.selectionType;
+    let selectedUnit: sizeList = {} as sizeList;
     if (selectedType === "size" && data.sizeList) {
       setUnit(data.sizeList[0].size);
+      selectedUnit = data.sizeList[0];
     }
     if (selectedType === "unit" && data.unitList) {
       setUnit(data.unitList[0].size);
+      selectedUnit = data.unitList[0];
     }
+    setAddToCartData({
+      productId: data.id,
+      price: selectedUnit.price,
+      countInStock: selectedUnit.countInStock,
+    });
   }, []);
 
   return (
@@ -60,7 +67,7 @@ const ProductItem = ({ data }: ProductItemProps) => {
         {/*  */}
         <View className="flex-row justify-between items-center mt-1 w-full">
           <PriceStamp price={data.price} actualPrice={data.actualPrice} />
-          <AddToCartButton />
+          {addToCartData && <AddToCartButton data={addToCartData} />}
         </View>
       </View>
       {/*  */}
