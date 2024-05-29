@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useColorScheme } from "@HOOKS/useColorScheme.hook";
 
+import BottomSheet from "@/components/organism/BottomSheet";
+import CartList from "@/components/widgets/CartList";
 import CartListPage from "@/components/widgets/CartListPage";
 import Dark from "@CONFIG/DarkTheme.config";
 import Light from "@CONFIG/LightTheme.config";
@@ -66,6 +68,7 @@ function RootLayoutNav() {
 
   const colorScheme = useColorScheme();
   const { colors } = useTheme();
+  const [showBottomSheet, setShowBottomSheet] = useState<boolean>(false);
   return (
     <ThemeProvider value={colorScheme === "dark" ? Dark : Light}>
       <GlobalProvider>
@@ -100,7 +103,12 @@ function RootLayoutNav() {
             />
           </Stack>
         </SafeAreaView>
-        <CartListPage />
+        <BottomSheet
+          onCloseClickHandler={() => setShowBottomSheet(false)}
+          isVisible={showBottomSheet}
+          renderItem={<CartList />}
+        />
+        <CartListPage showBottomSheet={setShowBottomSheet} />
       </GlobalProvider>
     </ThemeProvider>
   );

@@ -69,7 +69,7 @@ const BottomSheet = (props: BottomSheetProps) => {
           {/* Children */}
           <View
             style={{
-              height: "80%",
+              height: "60%",
               width: "100%",
               borderRadius: 20,
               padding: 0,
