@@ -15,7 +15,8 @@
       "@MODALS/*": ["./modal/*"],
       "@LIB/*": ["./lib/*"],
       "@TYPES/*": ["./types/*"],
-      "@UTILS/*": ["./utils/*"]
+      "@UTILS/*": ["./utils/*"],
+      "@IMAGES/*": ["./assets/images/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]

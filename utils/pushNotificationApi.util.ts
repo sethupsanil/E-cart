@@ -30,7 +30,7 @@ const sendOtpPushNotification = (
         .then((response) => response.json())
         .then((data) => {
           console.log("Success:", data);
-          if (redirect) router.push("/pages/OtpVerification");
+          if (redirect) router.push("/otpVerification");
         })
         .catch((error) => {
           console.error("Error:", error);

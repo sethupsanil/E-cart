@@ -28,7 +28,8 @@ const CartListPage = ({ showBottomSheet }: CartListPageProps) => {
   }, [cart]);
 
   const onNextHandler = () => {
-    if (!isLogged) router.push("/pages/Register");
+    console.log("Next handler");
+    if (!isLogged) router.push("/register");
     else {
       Alert.alert("You have already logged in");
     }

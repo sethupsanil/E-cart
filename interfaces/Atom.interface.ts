@@ -3,6 +3,7 @@ export interface CustomButtonProps {
   containerStyles?: any;
   textStyles?: any;
   isLoading?: boolean;
+  isDisabled?: boolean;
   darkBackgroundColor?: string;
   lightBackgroundColor?: string;
   lightBorder?: string;

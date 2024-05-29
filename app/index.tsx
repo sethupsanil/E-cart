@@ -3,7 +3,7 @@ import { ScrollView } from "react-native";
 
 import Header from "@COMPONENTS/Header";
 import SearchAnimationBox from "@COMPONENTS/SearchAnimationBox";
-import { View } from "@COMPONENTS/Themed";
+import { Text, View } from "@COMPONENTS/Themed";
 import AnimatedView from "@COMPONENTS/molecule/AnimatedView";
 import BestSellers from "@COMPONENTS/molecule/BestSellers";
 import CategoryList from "@COMPONENTS/molecule/CategoryList";
@@ -16,6 +16,7 @@ import {
   HotDealsData,
   SnacksAndDrinksModal,
 } from "@MODALS/index";
+import { Link } from "expo-router";
 
 const index = () => {
   return (
@@ -27,6 +28,9 @@ const index = () => {
       >
         <View className="flex-1">
           {/* Header */}
+          <Link href="/otpVerification">
+            <Text>Hi link</Text>
+          </Link>
           <Header />
           {/* Search Animation */}
           <SearchAnimationBox />
