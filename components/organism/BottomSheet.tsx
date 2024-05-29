@@ -21,9 +21,7 @@ const BottomSheet = (props: BottomSheetProps) => {
 
     setModalVisible(!isModalVisible);
   };
-  const onSwipeHandler = (percentageShown: number) => {
-    // console.log("Swipe Move", Math.floor(percentageShown * 100));
-  };
+  const onSwipeHandler = (percentageShown: number) => {};
   return (
     <Modal
       isVisible={isModalVisible}
@@ -69,7 +67,7 @@ const BottomSheet = (props: BottomSheetProps) => {
           {/* Children */}
           <View
             style={{
-              height: "60%",
+              height: props.height ? `${props.height}%` : "80%",
               width: "100%",
               borderRadius: 20,
               padding: 0,

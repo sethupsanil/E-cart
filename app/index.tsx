@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView } from "react-native";
 
+import BottomSheet from "@/components/organism/BottomSheet";
+import CartList from "@/components/widgets/CartList";
+import CartListPage from "@/components/widgets/CartListPage";
 import Header from "@COMPONENTS/Header";
 import SearchAnimationBox from "@COMPONENTS/SearchAnimationBox";
-import { Text, View } from "@COMPONENTS/Themed";
+import { View } from "@COMPONENTS/Themed";
 import AnimatedView from "@COMPONENTS/molecule/AnimatedView";
 import BestSellers from "@COMPONENTS/molecule/BestSellers";
 import CategoryList from "@COMPONENTS/molecule/CategoryList";
@@ -16,21 +19,18 @@ import {
   HotDealsData,
   SnacksAndDrinksModal,
 } from "@MODALS/index";
-import { Link } from "expo-router";
 
 const index = () => {
+  const [showBottomSheet, setShowBottomSheet] = useState<boolean>(false);
   return (
     <>
       <ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        className="mb-3"
+        className="mb-2"
       >
         <View className="flex-1">
           {/* Header */}
-          <Link href="/otpVerification">
-            <Text>Hi link</Text>
-          </Link>
           <Header />
           {/* Search Animation */}
           <SearchAnimationBox />
@@ -70,6 +70,13 @@ const index = () => {
           />
         </View>
       </ScrollView>
+      <BottomSheet
+        onCloseClickHandler={() => setShowBottomSheet(false)}
+        isVisible={showBottomSheet}
+        height={60}
+        renderItem={<CartList />}
+      />
+      <CartListPage showBottomSheet={setShowBottomSheet} />
     </>
   );
 };

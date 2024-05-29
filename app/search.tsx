@@ -6,7 +6,6 @@ import { Pressable, ScrollView, StyleSheet, TextInput } from "react-native";
 
 const search = () => {
   const onPressHandler = () => {
-    console.log("Search icon pressed");
     router.back();
   };
   return (

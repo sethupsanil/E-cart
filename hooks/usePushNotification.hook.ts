@@ -68,7 +68,6 @@ export const usePushNotification = () => {
             projectId,
           })
         ).data;
-        console.log(pushTokenString);
         return pushTokenString;
       } catch (e) {
         handleRegistrationError(`${e}`);

@@ -39,7 +39,6 @@ const otpVerification = () => {
     setColor("#0d831f");
     //FIXME: : just a work around to fix otp filled event not triggering
     setUserInput((prev) => prev + input.toString());
-    // console.log(otp);
   };
   useEffect(() => {
     if (timer > 0) {
@@ -63,10 +62,8 @@ const otpVerification = () => {
 
   useEffect(() => {
     if (userInput.length === 4) {
-      console.log("in");
       codeHandler(userInput);
     }
-    console.log(userInput.length, userInput);
   }, [userInput]);
   return (
     <View className="flex-1 items-center p-4">
