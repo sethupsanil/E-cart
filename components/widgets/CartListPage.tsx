@@ -1,9 +1,10 @@
 import { useGlobalContext } from "@/context/GlobalContext.context";
 import { useHaptic } from "@/hooks/useHaptic.hook";
 import { AntDesign } from "@expo/vector-icons";
+import { isDevice } from "expo-device";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "../Themed";
 import CustomButton from "../atom/CustomButton";
 
@@ -12,7 +13,9 @@ type CartListPageProps = {
 };
 
 const CartListPage = ({ showBottomSheet }: CartListPageProps) => {
-  const { cart, isLogged } = useGlobalContext();
+  const { cart, isLogged, userMobile, setIsLogged, setUser } =
+    useGlobalContext();
+
   const hapticSelection = useHaptic();
   const [cartLength, setCartLength] = useState(0);
 
@@ -30,9 +33,15 @@ const CartListPage = ({ showBottomSheet }: CartListPageProps) => {
   const onNextHandler = () => {
     if (!isLogged) router.push("/register");
     else {
-      Alert.alert("You have already logged in");
+      router.push("/pages/ListAddress");
     }
   };
+  useEffect(() => {
+    if (!isDevice) {
+      setIsLogged(true);
+      setUser({ mobile: "1234567890", name: "User", otp: "0000" });
+    }
+  }, []);
   if (cart.length === 0) return null;
   return (
     <>

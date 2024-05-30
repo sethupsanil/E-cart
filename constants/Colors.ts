@@ -42,4 +42,5 @@ export default {
   placeHolder: "#999999",
   tintColorLight,
   tintColorDark,
+  yellow: "#FFD700",
 };

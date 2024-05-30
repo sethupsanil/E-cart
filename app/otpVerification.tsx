@@ -2,6 +2,7 @@ import { useGlobalContext } from "@/context/GlobalContext.context";
 import { usePushNotification } from "@/hooks/usePushNotification.hook";
 import { sendOtpPushNotification } from "@/utils/pushNotificationApi.util";
 import OTPInputView from "@twotalltotems/react-native-otp-input";
+import { isDevice } from "expo-device";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
@@ -65,6 +66,15 @@ const otpVerification = () => {
       codeHandler(userInput);
     }
   }, [userInput]);
+
+  useEffect(() => {
+    // For testing purpose
+    if (!isDevice) {
+      setIsLogged(true);
+      setUser({ mobile: userMobile, name: "User", otp: "0000" });
+      router.replace("/");
+    }
+  }, []);
   return (
     <View className="flex-1 items-center p-4">
       <Text className="text-sm font-pregular">

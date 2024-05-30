@@ -81,6 +81,8 @@ function RootLayoutNav() {
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="search" options={{ headerShown: false }} />
             <Stack.Screen name="register" options={{ headerShown: false }} />
+            <Stack.Screen name="pages" options={{ headerShown: false }} />
+
             <Stack.Screen
               name="otpVerification"
               options={{ headerShown: false }}
