@@ -1,5 +1,6 @@
 import { Icon, Text, View } from "@/components/Themed";
 import Border from "@/components/atom/Border";
+import FlaotingTextInput from "@/components/atom/FlaotingTextInput";
 import RadioButton from "@/components/atom/RadioButton";
 import Colors from "@/constants/Colors";
 import { IconNames } from "@/types/FontAwesomeIcon.type";
@@ -74,6 +75,10 @@ const ListAddress = () => {
         </View>
       </View>
       {/* View 3 */}
+      <View className="mt-2 mb-4">
+        <FlaotingTextInput label="Full Name" />
+      </View>
+      <FlaotingTextInput label=" Name" />
     </View>
   );
 };
