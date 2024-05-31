@@ -24,3 +24,15 @@ export interface CustomViewProps {
   lightShadow?: string;
   darkShadow?: string;
 }
+
+export interface FloatingTextInputProps {
+  label: string;
+  text?: string;
+  titleActiveSize?: number;
+  titleInActiveSize?: number;
+  showBorder?: boolean;
+  titleActiveColor?: string;
+  titleInactiveColor?: string;
+  onChangeText?: (text: string) => void;
+  containerClass?: string;
+}

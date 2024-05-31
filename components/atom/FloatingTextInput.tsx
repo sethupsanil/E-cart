@@ -1,3 +1,4 @@
+import { FloatingTextInputProps } from "@/interfaces/Atom.interface";
 import React, { useRef } from "react";
 import { Animated, Easing, StyleSheet, TextInput } from "react-native";
 
@@ -7,7 +8,9 @@ const FloatingTextInput = ({
   titleInActiveSize = 14,
   titleActiveColor = "#444444",
   titleInactiveColor = "#c2c2c2",
-}) => {
+  showBorder = true,
+  containerClass = "",
+}: FloatingTextInputProps) => {
   const [text, onChangeText] = React.useState("");
   const animatedValue = useRef(new Animated.Value(0));
 
@@ -41,8 +44,8 @@ const FloatingTextInput = ({
       inputRange: [0, 1],
       outputRange: [titleInactiveColor, titleActiveColor],
     }),
-    borderWidth: 0,
-    borderBottomWidth: 1,
+    borderWidth: showBorder ? 0.5 : 0,
+    borderBottomWidth: 0.5,
     borderRadius: 4,
     paddingHorizontal: 10,
     paddingTop: 20,
@@ -68,9 +71,11 @@ const FloatingTextInput = ({
       }).start();
     }
   };
-
   return (
-    <Animated.View style={[styles.subContainer, viewStyles]}>
+    <Animated.View
+      style={[styles.subContainer, viewStyles]}
+      className={containerClass}
+    >
       <Animated.Text style={[returnAnimatedTitleStyles]}>{label}</Animated.Text>
       <TextInput
         onChangeText={onChangeText}
@@ -85,7 +90,6 @@ const FloatingTextInput = ({
 
 const styles = StyleSheet.create({
   subContainer: {
-    marginHorizontal: 24,
     position: "relative",
   },
   textStyle: {

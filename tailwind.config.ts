@@ -16,6 +16,7 @@ module.exports = {
           DEFAULT: "#fff",
           primary: "#f8f8f8",
           secondary: "#e8e8e8",
+          placeholder: "#999999",
         },
         green: {
           DEFAULT: "#0d831f",
