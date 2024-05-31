@@ -1,24 +1,12 @@
-import { Icon, Text, View } from "@/components/Themed";
+import { Text, View } from "@/components/Themed";
 import Border from "@/components/atom/Border";
 import CustomButton from "@/components/atom/CustomButton";
 import FloatingTextInput from "@/components/atom/FloatingTextInput";
 import RadioButton from "@/components/atom/RadioButton";
 import Colors from "@/constants/Colors";
-import { IconNames } from "@/types/FontAwesomeIcon.type";
 import React, { useMemo, useState } from "react";
 import { ScrollView } from "react-native";
-
-const IconList = ({ title, icon }: { icon: IconNames; title: string }) => {
-  return (
-    <View
-      className="h-[35px] w-20 border flex-row items-center justify-evenly "
-      lightBorder={Colors.whiteSecondary}
-    >
-      <Icon name={icon} size={20} />
-      <Text className="text-sm font-bold">{title}</Text>
-    </View>
-  );
-};
+import AddressList from "./components/addressList";
 
 const ListAddress = () => {
   const radioButtons = useMemo(
@@ -41,8 +29,21 @@ const ListAddress = () => {
     []
   );
 
+  const addressList = useMemo(
+    () => [
+      { title: "Home", icon: "home" },
+      { title: "Work", icon: "building" },
+      { title: "Hotel", icon: "hotel" },
+      { title: "Other", icon: "location-arrow" },
+    ],
+    []
+  );
   const [selectedId, setSelectedId] = useState("2");
-
+  const [activeIndex, setActiveIndex] = useState(0);
+  const addressSelectionHandler = (index: number) => {
+    console.log(index);
+    setActiveIndex(index);
+  };
   return (
     <View className="w-full h-full pl-2">
       <View className="justify-center">
@@ -68,10 +69,16 @@ const ListAddress = () => {
         <View className="mt-2">
           <Text>Save address as </Text>
           <View className="flex-row justify-evenly mt-1">
-            <IconList icon={"home"} title={"Home"} />
-            <IconList icon={"building"} title="Work" />
-            <IconList icon={"hotel"} title="Hotel" />
-            <IconList icon="location-arrow" title="Other" />
+            {addressList.map((item: any, index) => (
+              <AddressList
+                icon={item.icon}
+                title={item.title}
+                key={index}
+                index={index}
+                activeIndex={activeIndex}
+                onPressHandler={addressSelectionHandler}
+              />
+            ))}
           </View>
         </View>
         {/* View 3 */}
