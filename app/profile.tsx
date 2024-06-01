@@ -1,4 +1,5 @@
-import { Text, View } from "@COMPONENTS/Themed";
+import { Icon, Text, View } from "@COMPONENTS/Themed";
+import { Link } from "expo-router";
 import React, { useState } from "react";
 import { Appearance, Switch } from "react-native";
 
@@ -14,12 +15,22 @@ const profile = () => {
   });
 
   return (
-    <View className="justify-between flex-row w-full h-full p-2">
-      <Text className="text-md font-semibold">Dark Theme</Text>
-      <Switch
-        value={Appearance.getColorScheme() === "dark"}
-        onValueChange={toggleColorScheme}
-      ></Switch>
+    <View className=" h-full">
+      {/* Theme */}
+      <View className="justify-between flex-row w-full p-2">
+        <Text className="text-md font-semibold">Dark Theme</Text>
+        <Switch
+          value={Appearance.getColorScheme() === "dark"}
+          onValueChange={toggleColorScheme}
+        ></Switch>
+      </View>
+      {/* Address */}
+      <Link href="/pages/ListAddress">
+        <View className="justify-between flex-row w-full p-2">
+          <Text className="text-md font-semibold">Address book</Text>
+          <Icon name="address-book" size={20} />
+        </View>
+      </Link>
     </View>
   );
 };
