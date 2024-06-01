@@ -1,6 +1,12 @@
 import { FloatingTextInputProps } from "@/interfaces/Atom.interface";
 import React, { useRef } from "react";
-import { Animated, Easing, StyleSheet, TextInput } from "react-native";
+import {
+  Animated,
+  Easing,
+  StyleSheet,
+  TextInput,
+  useColorScheme,
+} from "react-native";
 
 const FloatingTextInput = ({
   label = "New Title",
@@ -10,10 +16,11 @@ const FloatingTextInput = ({
   titleInactiveColor = "#c2c2c2",
   showBorder = true,
   containerClass = "",
+  ...props
 }: FloatingTextInputProps) => {
   const [text, onChangeText] = React.useState("");
   const animatedValue = useRef(new Animated.Value(0));
-
+  const theme = useColorScheme();
   const returnAnimatedTitleStyles: any = {
     transform: [
       {
@@ -76,13 +83,26 @@ const FloatingTextInput = ({
       style={[styles.subContainer, viewStyles]}
       className={containerClass}
     >
-      <Animated.Text style={[returnAnimatedTitleStyles]}>{label}</Animated.Text>
+      <Animated.Text
+        style={[
+          returnAnimatedTitleStyles,
+          { backgroundColor: theme === "dark" ? "#000" : "#fff" },
+          { color: theme === "dark" ? "#fff" : "#000" },
+        ]}
+      >
+        {label}
+      </Animated.Text>
       <TextInput
         onChangeText={onChangeText}
         value={text}
-        style={styles.textStyle}
+        style={[
+          styles.textStyle,
+          { color: theme === "dark" ? "#fff" : "#000" },
+        ]}
         onBlur={onBlur}
         onFocus={onFocus}
+        autoCorrect={false}
+        keyboardType={props.keyboardType}
       />
     </Animated.View>
   );

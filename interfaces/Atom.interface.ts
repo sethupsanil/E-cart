@@ -1,3 +1,5 @@
+import { KeyboardTypeOptions } from "react-native";
+
 export interface CustomButtonProps {
   title: string;
   containerStyles?: any;
@@ -33,6 +35,7 @@ export interface FloatingTextInputProps {
   showBorder?: boolean;
   titleActiveColor?: string;
   titleInactiveColor?: string;
-  onChangeText?: (text: string) => void;
   containerClass?: string;
+  keyboardType?: KeyboardTypeOptions | undefined;
+  onChangeText?: (text: string) => void;
 }

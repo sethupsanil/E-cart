@@ -24,6 +24,9 @@ const AddressList = ({
         lightBorder={
           index === activeIndex ? Colors.green : Colors.whiteSecondary
         }
+        darkBorder={
+          index === activeIndex ? Colors.green : Colors.whiteSecondary
+        }
       >
         <Icon name={icon} size={20} />
         <Text className="text-sm font-bold">{title}</Text>
