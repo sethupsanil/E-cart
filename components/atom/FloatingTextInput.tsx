@@ -47,11 +47,32 @@ const FloatingTextInput = ({
     left: 10,
   };
 
+  const getBorderColor = (): any => {
+    return props.formikKey &&
+      props.errors &&
+      props.errors[props.formikKey] &&
+      props.touched &&
+      props.touched[props.formikKey]
+      ? "red"
+      : animatedValue.current.interpolate({
+          inputRange: [0, 1],
+          outputRange: [titleInactiveColor, titleActiveColor],
+        });
+  };
+  const getTextColor = (): any => {
+    return props.formikKey &&
+      props.errors &&
+      props.errors[props.formikKey] &&
+      props.touched &&
+      props.touched[props.formikKey]
+      ? "red"
+      : theme === "dark"
+      ? "#fff"
+      : "#000";
+  };
+
   const viewStyles = {
-    borderColor: animatedValue.current.interpolate({
-      inputRange: [0, 1],
-      outputRange: [titleInactiveColor, titleActiveColor],
-    }),
+    borderColor: getBorderColor(),
     borderWidth: showBorder ? 0.5 : 0,
     borderBottomWidth: 0.5,
     borderRadius: 4,
@@ -94,7 +115,7 @@ const FloatingTextInput = ({
           style={[
             returnAnimatedTitleStyles,
             { backgroundColor: theme === "dark" ? "#000" : "#fff" },
-            { color: theme === "dark" ? "#fff" : "#000" },
+            { color: getTextColor() },
           ]}
         >
           {label}
@@ -118,7 +139,7 @@ const FloatingTextInput = ({
       props.errors[props.formikKey] &&
       props.touched &&
       props.touched[props.formikKey] ? (
-        <Text className="text-red-600 text-xs">
+        <Text className="text-red-600 text-xs ">
           {props.errors[props.formikKey] as string}
         </Text>
       ) : null}

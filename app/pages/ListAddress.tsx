@@ -75,7 +75,7 @@ const ListAddress = () => {
       .required("Name is required"),
     phone: Yup.string()
       .matches(/^[0-9]+$/, "Phone number must be a number")
-      .min(10)
+      .min(10, "Phone number must be 10 digits")
       .max(12),
   });
 
