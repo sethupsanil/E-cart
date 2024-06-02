@@ -1,5 +1,5 @@
 import { FloatingTextInputProps } from "@/interfaces/Atom.interface";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   Animated,
   Easing,
@@ -7,6 +7,7 @@ import {
   TextInput,
   useColorScheme,
 } from "react-native";
+import { Text } from "./Text";
 
 const FloatingTextInput = ({
   label = "New Title",
@@ -18,7 +19,7 @@ const FloatingTextInput = ({
   containerClass = "",
   ...props
 }: FloatingTextInputProps) => {
-  const [text, onChangeText] = React.useState("");
+  const [text, onChangeText] = useState("");
   const animatedValue = useRef(new Animated.Value(0));
   const theme = useColorScheme();
   const returnAnimatedTitleStyles: any = {
@@ -68,7 +69,7 @@ const FloatingTextInput = ({
     }).start();
   };
 
-  const onBlur = () => {
+  const onBlurHandler = (event: any) => {
     if (!text) {
       Animated.timing(animatedValue.current, {
         toValue: 0,
@@ -77,34 +78,51 @@ const FloatingTextInput = ({
         useNativeDriver: false,
       }).start();
     }
+    if (props.onBlur) props.onBlur(event);
+  };
+  const onTextChangeHandler = (text: any) => {
+    onChangeText(text);
+    if (props.onChangeText) props.onChangeText(text);
   };
   return (
-    <Animated.View
-      style={[styles.subContainer, viewStyles]}
-      className={containerClass}
-    >
-      <Animated.Text
-        style={[
-          returnAnimatedTitleStyles,
-          { backgroundColor: theme === "dark" ? "#000" : "#fff" },
-          { color: theme === "dark" ? "#fff" : "#000" },
-        ]}
+    <>
+      <Animated.View
+        style={[styles.subContainer, viewStyles]}
+        className={containerClass}
       >
-        {label}
-      </Animated.Text>
-      <TextInput
-        onChangeText={onChangeText}
-        value={text}
-        style={[
-          styles.textStyle,
-          { color: theme === "dark" ? "#fff" : "#000" },
-        ]}
-        onBlur={onBlur}
-        onFocus={onFocus}
-        autoCorrect={false}
-        keyboardType={props.keyboardType}
-      />
-    </Animated.View>
+        <Animated.Text
+          style={[
+            returnAnimatedTitleStyles,
+            { backgroundColor: theme === "dark" ? "#000" : "#fff" },
+            { color: theme === "dark" ? "#fff" : "#000" },
+          ]}
+        >
+          {label}
+        </Animated.Text>
+        <TextInput
+          onChangeText={onTextChangeHandler}
+          value={text}
+          style={[
+            styles.textStyle,
+            { color: theme === "dark" ? "#fff" : "#000" },
+          ]}
+          onBlur={onBlurHandler}
+          onFocus={onFocus}
+          autoCorrect={false}
+          maxLength={props.maxLength}
+          keyboardType={props.keyboardType}
+        />
+      </Animated.View>
+      {props.formikKey &&
+      props.errors &&
+      props.errors[props.formikKey] &&
+      props.touched &&
+      props.touched[props.formikKey] ? (
+        <Text className="text-red-600 text-xs">
+          {props.errors[props.formikKey] as string}
+        </Text>
+      ) : null}
+    </>
   );
 };
 

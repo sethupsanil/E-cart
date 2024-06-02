@@ -22,6 +22,7 @@ module.exports = {
           DEFAULT: "#0d831f",
           primary: "#0C831F",
         },
+        red: "#f00",
       },
       fontFamily: {
         pthin: ["Poppins-Thin", "sans-serif"],

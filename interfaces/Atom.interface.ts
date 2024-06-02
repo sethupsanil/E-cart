@@ -1,3 +1,4 @@
+import { FormikErrors, FormikTouched } from "formik";
 import { KeyboardTypeOptions } from "react-native";
 
 export interface CustomButtonProps {
@@ -37,5 +38,11 @@ export interface FloatingTextInputProps {
   titleInactiveColor?: string;
   containerClass?: string;
   keyboardType?: KeyboardTypeOptions | undefined;
+  value?: any;
+  errors?: FormikErrors<any>;
+  touched?: FormikTouched<any>;
+  formikKey?: string;
+  maxLength?: number;
   onChangeText?: (text: string) => void;
+  onBlur?: (name?: any) => void;
 }
