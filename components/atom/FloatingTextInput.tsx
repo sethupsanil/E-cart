@@ -139,7 +139,7 @@ const FloatingTextInput = ({
       props.errors[props.formikKey] &&
       props.touched &&
       props.touched[props.formikKey] ? (
-        <Text className="text-red-600 text-xs ">
+        <Text className="text-red-600 text-xs mt-1" darkColor="#f00">
           {props.errors[props.formikKey] as string}
         </Text>
       ) : null}

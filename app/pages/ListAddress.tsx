@@ -2,8 +2,6 @@ import { Text, View } from "@/components/Themed";
 import Border from "@/components/atom/Border";
 import CustomButton from "@/components/atom/CustomButton";
 import FloatingTextInput from "@/components/atom/FloatingTextInput";
-import RadioButton from "@/components/atom/RadioButton";
-import Colors from "@/constants/Colors";
 import React, { useMemo, useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -13,18 +11,21 @@ import {
 } from "react-native";
 import AddressList from "./components/addressList";
 
+import Colors from "@/constants/Colors";
 import { Formik } from "formik";
+import { RadioGroup } from "react-native-radio-buttons-group";
 import * as Yup from "yup";
 
 const ListAddress = () => {
   const theme = useColorScheme();
-  const radioButtons = useMemo(
+  const radioButtons: any = useMemo(
     () => [
       {
         id: "1",
         label: "Myself",
         value: "myself",
         borderColor: Colors.green,
+        containerStyle: { color: Colors.green },
         color: Colors.green,
         labelStyle: { color: theme === "dark" ? "#fff" : "#000" },
       },
@@ -58,7 +59,7 @@ const ListAddress = () => {
     setActiveIndex(index);
   };
 
-  const SignupSchema = Yup.object().shape({
+  const addressSchema = Yup.object().shape({
     orderingFor: Yup.string(),
     addressType: Yup.string().required("Select address type"),
     buildingName: Yup.string().required(
@@ -80,16 +81,18 @@ const ListAddress = () => {
   });
 
   const initialValues = {
-    orderingFor: "",
-    addressType: undefined,
-    buildingName: "",
-    floor: "",
-    area: "",
-    landmark: "",
-    name: "",
-    phone: "",
+    orderingFor: selectedId,
+    addressType: activeIndex,
+    buildingName: undefined,
+    floor: undefined,
+    area: undefined,
+    landmark: undefined,
+    name: undefined,
+    phone: undefined,
   };
-
+  const onOrderingForPress = (index: string) => {
+    setSelectedId(index);
+  };
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -98,13 +101,15 @@ const ListAddress = () => {
     >
       <Formik
         initialValues={initialValues}
-        validationSchema={SignupSchema}
+        validationSchema={addressSchema}
         onSubmit={(values) => console.log(values)}
       >
         {({
           handleChange,
           handleBlur,
           handleSubmit,
+          setFieldValue,
+          isValid,
           values,
           errors,
           touched,
@@ -120,19 +125,15 @@ const ListAddress = () => {
               {/* View 1 */}
               <View className="justify-start items-start">
                 <Text>Who you are ordering for?</Text>
-                <RadioButton
+                <RadioGroup
                   layout="row"
                   radioButtons={radioButtons}
-                  containerStyle={{ margin: 0, padding: 0 }}
-                  onPress={(id: any) => {
-                    console.log("selected", id);
-                    setSelectedId(id);
+                  onPress={(selectedItem) => {
+                    setFieldValue("orderingFor", selectedItem);
+                    onOrderingForPress(selectedItem);
                   }}
-                  selectedId={values.orderingFor}
+                  selectedId={selectedId}
                 />
-                {errors.addressType && touched.addressType ? (
-                  <Text>{errors.addressType}</Text>
-                ) : null}
               </View>
               {/* View 2 */}
               <View className="mt-2">
@@ -145,7 +146,10 @@ const ListAddress = () => {
                       key={index}
                       index={index}
                       activeIndex={activeIndex}
-                      onPressHandler={addressSelectionHandler}
+                      onPressHandler={() => {
+                        addressSelectionHandler(index);
+                        setFieldValue("addressType", index);
+                      }}
                     />
                   ))}
                 </View>
@@ -236,8 +240,7 @@ const ListAddress = () => {
               title="Save Address"
               containerStyles={"mt-4 bg-green h-10"}
               handlePress={() => {
-                console.log(errors);
-                console.log(values);
+                console.log(isValid, values);
                 handleSubmit();
               }}
               textStyles={"text-white text-lg font-pregular"}
