@@ -27,7 +27,7 @@ const index = () => {
       <ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        className="mb-2"
+        className="mb-2 p-2"
       >
         <View className="flex-1">
           {/* Header */}
