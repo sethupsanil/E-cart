@@ -471,6 +471,7 @@ export type IconNames =
   | "arrow-circle-o-left"
   | "caret-square-o-left"
   | "dot-circle-o"
+  | "dots-three-horizontal"
   | "wheelchair"
   | "vimeo-square"
   | "turkish-lira"

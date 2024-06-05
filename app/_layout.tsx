@@ -73,7 +73,7 @@ function RootLayoutNav() {
           style={{
             flex: 1,
             backgroundColor: colors.background,
-            padding: 15,
+            padding: 0,
             paddingBottom: 0,
           }}
         >
