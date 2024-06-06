@@ -12,6 +12,8 @@ import {
 import AddressList from "./components/addressList";
 
 import Colors from "@/constants/Colors";
+import { Address } from "@/interfaces/Address.interface";
+import { addAddress } from "@/utils/api.util";
 import { Formik } from "formik";
 import { RadioGroup } from "react-native-radio-buttons-group";
 import * as Yup from "yup";
@@ -80,18 +82,22 @@ const createAddress = () => {
       .max(12),
   });
 
-  const initialValues = {
+  const initialValues: Address = {
     orderingFor: selectedId,
     addressType: activeIndex,
-    buildingName: undefined,
-    floor: undefined,
-    area: undefined,
-    landmark: undefined,
-    name: undefined,
-    phone: undefined,
+    buildingName: "undefined",
+    floor: "undefined",
+    area: "undefined",
+    landmark: "undefined",
+    name: "undefined",
+    phone: "undefined",
   };
   const onOrderingForPress = (index: string) => {
     setSelectedId(index);
+  };
+  const onSubmit = (values: any) => {
+    console.log(values);
+    addAddress(values);
   };
   return (
     <KeyboardAvoidingView
@@ -107,7 +113,6 @@ const createAddress = () => {
         {({
           handleChange,
           handleBlur,
-          handleSubmit,
           setFieldValue,
           isValid,
           values,
@@ -241,7 +246,7 @@ const createAddress = () => {
               containerStyles={"mt-4 bg-green h-10"}
               handlePress={() => {
                 console.log(isValid, values);
-                handleSubmit();
+                onSubmit(values);
               }}
               textStyles={"text-white text-lg font-pregular"}
             />
