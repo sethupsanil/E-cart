@@ -2,6 +2,10 @@ import { Text, View } from "@/components/Themed";
 import Border from "@/components/atom/Border";
 import CustomButton from "@/components/atom/CustomButton";
 import FloatingTextInput from "@/components/atom/FloatingTextInput";
+import Colors from "@/constants/Colors";
+import { Address } from "@/interfaces/Address.interface";
+import { addAddress } from "@/utils/api.util";
+import { Formik } from "formik";
 import React, { useMemo, useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -9,14 +13,9 @@ import {
   ScrollView,
   useColorScheme,
 } from "react-native";
-import AddressList from "./components/addressList";
-
-import Colors from "@/constants/Colors";
-import { Address } from "@/interfaces/Address.interface";
-import { addAddress } from "@/utils/api.util";
-import { Formik } from "formik";
 import { RadioGroup } from "react-native-radio-buttons-group";
 import * as Yup from "yup";
+import AddressList from "./components/addressList";
 
 const createAddress = () => {
   const theme = useColorScheme();
@@ -40,7 +39,7 @@ const createAddress = () => {
         labelStyle: { color: theme === "dark" ? "#fff" : "#000" },
       },
     ],
-    []
+    [theme]
   );
 
   const addressList = useMemo(
@@ -57,7 +56,6 @@ const createAddress = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const addressSelectionHandler = (index: number) => {
-    console.log(index);
     setActiveIndex(index);
   };
 
@@ -85,20 +83,27 @@ const createAddress = () => {
   const initialValues: Address = {
     orderingFor: selectedId,
     addressType: activeIndex,
-    buildingName: "undefined",
-    floor: "undefined",
-    area: "undefined",
-    landmark: "undefined",
-    name: "undefined",
-    phone: "undefined",
+    buildingName: "",
+    floor: "",
+    area: "",
+    landmark: "",
+    name: "",
+    phone: "",
   };
+
   const onOrderingForPress = (index: string) => {
     setSelectedId(index);
   };
-  const onSubmit = (values: any) => {
-    console.log(values);
-    addAddress(values);
+
+  const handleSubmit = async (values: any) => {
+    try {
+      console.log(values);
+      await addAddress(values);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -108,7 +113,7 @@ const createAddress = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={addressSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={handleSubmit}
       >
         {({
           handleChange,
@@ -118,10 +123,11 @@ const createAddress = () => {
           values,
           errors,
           touched,
+          handleSubmit,
         }) => (
           <View className="w-full h-full pl-2">
             <View className="justify-center">
-              <Text className="text-lg font-bold  pt-2">
+              <Text className="text-lg font-bold pt-2">
                 Enter complete address
               </Text>
             </View>
@@ -172,7 +178,7 @@ const createAddress = () => {
                 />
               </View>
               {/* view 4 */}
-              <View className="mt-4 ">
+              <View className="mt-4">
                 <FloatingTextInput
                   label={"Floor (optional)"}
                   value={values.floor}
@@ -184,7 +190,7 @@ const createAddress = () => {
                 />
               </View>
               {/* view 5 */}
-              <View className="mt-4 ">
+              <View className="mt-4">
                 <FloatingTextInput
                   label={"Area / Sector / Locality *"}
                   value={values.area}
@@ -196,7 +202,7 @@ const createAddress = () => {
                 />
               </View>
               {/* view 6 */}
-              <View className="mt-4 ">
+              <View className="mt-4">
                 <FloatingTextInput
                   label={"Landmark (optional)"}
                   value={values.landmark}
@@ -208,13 +214,13 @@ const createAddress = () => {
                 />
               </View>
               {/* view 7 */}
-              <View className="mt-4 ">
+              <View className="mt-4">
                 <Text className="text-white-placeholder">
                   Enter your details for seamless delivery experience
                 </Text>
               </View>
               {/* view 8 */}
-              <View className="mt-2 ">
+              <View className="mt-2">
                 <FloatingTextInput
                   label={"Your name *"}
                   value={values.name}
@@ -226,7 +232,7 @@ const createAddress = () => {
                 />
               </View>
               {/* view 9 */}
-              <View className="mt-4 ">
+              <View className="mt-4">
                 <FloatingTextInput
                   label={"Your phone number (optional)"}
                   value={values.phone}
@@ -244,10 +250,7 @@ const createAddress = () => {
             <CustomButton
               title="Save Address"
               containerStyles={"mt-4 bg-green h-10"}
-              handlePress={() => {
-                console.log(isValid, values);
-                onSubmit(values);
-              }}
+              handlePress={handleSubmit} // Formik's handleSubmit handles the form submission
               textStyles={"text-white text-lg font-pregular"}
             />
           </View>

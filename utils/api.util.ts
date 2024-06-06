@@ -1,5 +1,7 @@
 import { config } from "@CONFIG/appWrite.config";
 
+import { Table } from "@/config/dataBase.config";
+import { Address } from "@/interfaces/Address.interface";
 import {
   Account,
   Client,
@@ -7,6 +9,7 @@ import {
   Query,
   Storage,
 } from "react-native-appwrite";
+import { insertOne } from "./databaseApi.util";
 import { errorHandler } from "./helper.util";
 
 const client = new Client();
@@ -70,4 +73,13 @@ const getProductDetails = async (productId: string) => {
   }
 };
 
-export { getAllCategory, getProductDetails, getProductForCategory };
+const addAddress = async (address: Address) => {
+  try {
+    const res = await insertOne(address, Table.address);
+    console.log(res);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { addAddress, getAllCategory, getProductDetails, getProductForCategory };
