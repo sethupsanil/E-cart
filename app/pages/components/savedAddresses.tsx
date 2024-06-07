@@ -1,19 +1,32 @@
 import { Icon, Text, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import { Address } from "@/interfaces/Address.interface";
-import React from "react";
+import React, { useMemo } from "react";
 
 const SavedAddresses = ({ address }: { address: Address }) => {
+  const addressList = useMemo(
+    () => [
+      { title: "Home", icon: "home" },
+      { title: "Work", icon: "building" },
+      { title: "Hotel", icon: "hotel" },
+      { title: "Other", icon: "location-arrow" },
+    ],
+    []
+  );
   return (
     <View className="bg-white h-20 rounded p-1 w-full mt-2">
       <View className="flex-row justify-center items-center ml-1 gap-2">
         <View className="bg-white-secondary h-10 w-10 rounded justify-center items-center">
-          <Icon name="home" size={25} color={Colors.green} />
+          <Icon
+            name={addressList[Number(address.addressType) || 0].icon as any}
+            size={25}
+            color={Colors.green}
+          />
         </View>
         {/* Address */}
         <View className="flex-1 w-full">
           <Text className="text-base font-pregular ">
-            {address.addressType}
+            {addressList[Number(address.addressType) || 0].title}
           </Text>
           <Text className="text-[9px] text-white-placeholder">
             {address.buildingName}, {address.floor}, {address.area},{" "}
