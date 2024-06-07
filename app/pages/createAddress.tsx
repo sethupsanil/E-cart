@@ -3,6 +3,7 @@ import Border from "@/components/atom/Border";
 import CustomButton from "@/components/atom/CustomButton";
 import FloatingTextInput from "@/components/atom/FloatingTextInput";
 import Colors from "@/constants/Colors";
+import { useGlobalContext } from "@/context/GlobalContext.context";
 import { Address } from "@/interfaces/Address.interface";
 import { addAddress } from "@/utils/api.util";
 import { Formik } from "formik";
@@ -17,7 +18,8 @@ import { RadioGroup } from "react-native-radio-buttons-group";
 import * as Yup from "yup";
 import AddressList from "./components/addressList";
 
-const createAddress = () => {
+const CreateAddress = ({ afterSubmit }: { afterSubmit: () => void }) => {
+  const { loading, setLoading } = useGlobalContext();
   const theme = useColorScheme();
   const radioButtons: any = useMemo(
     () => [
@@ -97,8 +99,11 @@ const createAddress = () => {
 
   const handleSubmit = async (values: any) => {
     try {
-      console.log(values);
-      await addAddress(values);
+      setLoading(true);
+      addAddress(values)
+        .then(() => afterSubmit())
+        .catch((error) => {})
+        .finally(() => setLoading(false));
     } catch (error) {
       console.error(error);
     }
@@ -125,7 +130,7 @@ const createAddress = () => {
           touched,
           handleSubmit,
         }) => (
-          <View className="w-full h-full pl-2">
+          <View className="w-full h-full p-2">
             <View className="justify-center">
               <Text className="text-lg font-bold pt-2">
                 Enter complete address
@@ -248,8 +253,9 @@ const createAddress = () => {
             </ScrollView>
             {/* View 10 */}
             <CustomButton
+              isLoading={loading}
               title="Save Address"
-              containerStyles={"mt-4 bg-green h-10"}
+              containerStyles={"mt-4 bg-green h-10 mb-4"}
               handlePress={handleSubmit} // Formik's handleSubmit handles the form submission
               textStyles={"text-white text-lg font-pregular"}
             />
@@ -260,4 +266,4 @@ const createAddress = () => {
   );
 };
 
-export default createAddress;
+export default CreateAddress;

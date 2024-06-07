@@ -27,23 +27,39 @@ const handleRequest = async (endpoint: string, data: any) => {
 };
 
 const findOne = async (filter: any, database: string) => {
-  return await handleRequest("findOne", {
-    dataSource: DataSource,
-    database,
-    collection: "tasks",
-    filter,
-  });
+  const [data, count] = await Promise.all([
+    handleRequest("findOne", {
+      dataSource: DataSource,
+      database,
+      collection: "tasks",
+      filter,
+    }),
+    getCount(database),
+  ]);
+  return { data, count };
 };
 
-const find = async (filter: any, database: string, sort = {}, limit = 10) => {
-  return await handleRequest("find", {
-    dataSource: DataSource,
-    database,
-    collection: "tasks",
-    filter,
-    sort,
-    limit,
-  });
+const find = async (
+  filter: any,
+  database: string,
+  sort = {},
+  page = 1,
+  limit = 10
+) => {
+  const [data, totalCount] = await Promise.all([
+    handleRequest("find", {
+      dataSource: DataSource,
+      database: DataSource,
+      collection: database,
+      filter,
+      sort,
+      skip: page * limit,
+      limit,
+    }),
+    getCount(database),
+  ]);
+
+  return { data: data.documents, totalCount };
 };
 
 const insertOne = async (document: any, database: string) => {
@@ -83,4 +99,18 @@ const deleteOne = async (filter: any, database: string) => {
   });
 };
 
-export { deleteOne, find, findOne, insertMany, insertOne, updateOne };
+const getCount = async (collection: string) => {
+  try {
+    const { documents } = await handleRequest("aggregate", {
+      dataSource: DataSource,
+      database: DataSource,
+      collection: collection,
+      pipeline: [{ $count: "total" }],
+    });
+
+    return documents[0].total || 0;
+  } catch (error) {
+    return 0;
+  }
+};
+export { deleteOne, find, findOne, getCount, insertMany, insertOne, updateOne };

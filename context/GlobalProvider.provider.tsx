@@ -10,7 +10,7 @@ interface GlobalProviderProps {
 const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [user, setUser] = useState<any>(null); // Update 'any' with the actual user type
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [showBottomSheet, setShowBottomSheet] = useState<boolean>(false);
   const [selectedProductData, setSelectedProductData] = useState<any>(null); // Update 'any' with the actual type
   const [cart, setCart] = useState<Product[]>([]);

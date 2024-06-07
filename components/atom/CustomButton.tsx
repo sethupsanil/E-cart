@@ -21,7 +21,7 @@ const CustomButton = ({
     <TouchableOpacity
       onPress={handlePress}
       activeOpacity={0.7}
-      disabled={prop.isDisabled}
+      disabled={prop.isDisabled || isLoading}
     >
       <View
         className={`rounded-lg  h-[25px]  flex flex-row justify-center items-center border ${containerStyles} ${

@@ -9,7 +9,7 @@ import {
   Query,
   Storage,
 } from "react-native-appwrite";
-import { insertOne } from "./databaseApi.util";
+import { find, getCount, insertOne } from "./databaseApi.util";
 import { errorHandler } from "./helper.util";
 
 const client = new Client();
@@ -76,10 +76,30 @@ const getProductDetails = async (productId: string) => {
 const addAddress = async (address: Address) => {
   try {
     const res = await insertOne(address, Table.address);
-    console.log(res);
+    return res;
   } catch (error) {
     console.error(error);
   }
 };
-
-export { addAddress, getAllCategory, getProductDetails, getProductForCategory };
+//Get total count in a collection
+const getTotalCount = async (collection: string) => {
+  try {
+    return getCount(collection);
+  } catch (error) {}
+};
+// Get all address
+const getAllAddress = async (page: number) => {
+  try {
+    const result = await find({}, Table.address, {}, page);
+    return result;
+  } catch (error) {
+    errorHandler(error);
+  }
+};
+export {
+  addAddress,
+  getAllAddress,
+  getAllCategory,
+  getProductDetails,
+  getProductForCategory,
+};

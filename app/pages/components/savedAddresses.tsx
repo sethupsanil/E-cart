@@ -1,8 +1,9 @@
 import { Icon, Text, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
+import { Address } from "@/interfaces/Address.interface";
 import React from "react";
 
-const SavedAddresses = () => {
+const SavedAddresses = ({ address }: { address: Address }) => {
   return (
     <View className="bg-white h-20 rounded p-1 w-full mt-2">
       <View className="flex-row justify-center items-center ml-1 gap-2">
@@ -11,9 +12,12 @@ const SavedAddresses = () => {
         </View>
         {/* Address */}
         <View className="flex-1 w-full">
-          <Text className="text-base font-pregular ">Home</Text>
+          <Text className="text-base font-pregular ">
+            {address.addressType}
+          </Text>
           <Text className="text-[9px] text-white-placeholder">
-            Lorem ipsum,1st floor,Electronic city, Bengaluru, Karnataka, India
+            {address.buildingName}, {address.floor}, {address.area},{" "}
+            {address.landmark}
           </Text>
           {/* View icon wrapper */}
           <View className="flex-row justify-start items-center gap-2 p-1">
